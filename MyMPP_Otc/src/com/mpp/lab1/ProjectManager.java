@@ -1,9 +1,9 @@
 package com.mpp.lab1;
 
-public class ProjectManager extends Employee{
+public class ProjectManager{
 
-	public ProjectManager(Integer id, String title) {
-		super(id, title);
+	public ProjectManager() {
+	
 		// TODO Auto-generated constructor stub
 	}
 
