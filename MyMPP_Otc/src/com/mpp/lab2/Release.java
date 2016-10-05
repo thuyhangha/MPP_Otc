@@ -33,4 +33,8 @@ public class Release {
 	public void setLstFeatures(List<Features> lstFeatures) {
 		this.lstFeatures = lstFeatures;
 	}
+	
+	public void addReleasesFeatures(Features feature){
+		lstFeatures.add(feature);
+	}
 }

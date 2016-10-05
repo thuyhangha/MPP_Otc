@@ -1,5 +1,6 @@
 package com.mpp.lab2;
 
+import java.util.Date;
 import java.util.List;
 
 public class ProjectManager{
@@ -18,9 +19,29 @@ public class ProjectManager{
 		this.features = features;
 	}
 	
-	/*void addProductBacklogFeaturesToRelease(List<Features> lstFeatures, Release r){
-		for(Features f: lstFeatures){
-			r.setLstFeatures(lstFeatures);
+	void addProductBacklogFeaturesToRelease(Features feature, Release release){
+		release.addReleasesFeatures(feature);
+	}
+	
+	public void assignedFeaturesToDev(Features feature, Developer dev){
+			dev.addAssignedFeatures(feature);
+	}
+	
+	public Integer reportCompletedWork(Date d, Sprints sprints){
+		int completeWork = 0;
+		for(Features f: sprints.getLstSubsetFeatures()){
+			if(f.getCompleteWork().get(d) == 0)
+				completeWork++;
 		}
-	}*/
+		return completeWork;
+	}
+	
+	public Integer reportRemaingingWork(Date d, Sprints sprints){
+		int remainingWork = 0;
+		for(Features f: sprints.getLstSubsetFeatures()){
+			if(f.getRemainingWork().get(d) > 0)
+				remainingWork++;
+		}
+		return remainingWork;
+	}
 }
