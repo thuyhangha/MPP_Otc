@@ -1,5 +1,7 @@
 package com.mpp.lab1;
 
-public class ProductBacklog {
+import java.util.List;
 
+public class ProductBacklog {
+	List<Features> lstFeatures;
 }

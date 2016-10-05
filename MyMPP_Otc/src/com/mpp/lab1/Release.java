@@ -5,5 +5,5 @@ import java.util.List;
 
 public class Release {
 	Date releaseDate;
-	List<Sprints> lstSprint;
+	List<Sprints> lstSprints;
 }
