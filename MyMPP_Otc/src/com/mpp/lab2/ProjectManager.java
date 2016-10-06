@@ -30,7 +30,7 @@ public class ProjectManager{
 	public Integer reportCompletedWork(Date d, Sprints sprints){
 		int completeWork = 0;
 		for(Features f: sprints.getLstSubsetFeatures()){
-			if(f.getCompleteWork().get(d) == 0)
+			if(f.getCompleteWork() == 0)
 				completeWork++;
 		}
 		return completeWork;
@@ -39,7 +39,7 @@ public class ProjectManager{
 	public Integer reportRemaingingWork(Date d, Sprints sprints){
 		int remainingWork = 0;
 		for(Features f: sprints.getLstSubsetFeatures()){
-			if(f.getRemainingWork().get(d) > 0)
+			if(f.getRemainingWork() > 0)
 				remainingWork++;
 		}
 		return remainingWork;

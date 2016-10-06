@@ -6,9 +6,9 @@ import java.util.HashMap;
 public class Features {
 	private Integer estimateEfforts;
 	
-	private HashMap<Date, Integer> remainingWork;
+	private Integer remainingWork;
 	
-	private HashMap<Date, Integer> completeWork;
+	private Integer completeWork;
 	
 	private ProjectManager projectManager;
 	
@@ -40,25 +40,20 @@ public class Features {
 		this.projectManager = projectManager;
 	}
 
-	public HashMap<Date, Integer> getRemainingWork() {
+	public Integer getRemainingWork() {
 		return remainingWork;
 	}
 
-	public void setRemainingWork(HashMap<Date, Integer> remainingWork) {
+	public void setRemainingWork(Integer remainingWork) {
 		this.remainingWork = remainingWork;
 	}
 
-	public HashMap<Date, Integer> getCompleteWork() {
-		return completeWork;
+	public Integer getCompleteWork() {
+		return this.estimateEfforts - this.remainingWork;
 	}
 
-	public void setCompleteWork(HashMap<Date, Integer> completeWork) {
+	public void setCompleteWork(Integer completeWork) {
 		this.completeWork = completeWork;
-	}
-	
-	public void putCompleteWork(Date key){
-		Integer completeWorkValue = this.estimateEfforts - this.remainingWork.get(key);
-		completeWork.put(key, completeWorkValue);
 	}
 	
 }

@@ -20,4 +20,5 @@ public class Developer {
 	public void addAssignedFeatures(Features f) {
 		assignedFeatures.add(f);
 	}
+	
 }
