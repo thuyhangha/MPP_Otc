@@ -25,9 +25,7 @@ public class main {
 		
 		Employee commissioned = new Commissioned(2, 50, lstOrderVal);
 			
-		System.out.println("My value" + hourly.print(hourly.calCompensation(10, 2016)) );
-		System.out.println("My value" + hourly.print(salaried.calCompensation(10, 2016)) );
-		System.out.println("My value" + hourly.print(commissioned.calCompensation(10, 2016)) );
+		commissioned.print();
 	}
 
 }
