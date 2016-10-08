@@ -138,6 +138,18 @@ public class AddrWindow extends JFrame {
 		stateField.setText("");
 		zipField.setText("");
 	}
+	
+	private void validateRule(){
+		try
+		{
+			RuleSetFactory.getRuleSet(this).applyRules(this);
+		}
+		catch(RuleException e)
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Group7:Error", 1);
+		}
+	}
+	
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
 			String name = idField.getText();
@@ -150,15 +162,7 @@ public class AddrWindow extends JFrame {
 			System.out.println(output);
 			clearFields();
 			
-			/*try
-			{
-				//RuleSetFactory.getRuleSet(this).applyRules(this);
-				RuleSetFactory.getRuleSet(this).applyRules(this);
-			}
-			catch(RuleException e)
-			{
-				JOptionPane.showMessageDialog(null, e.getMessage(), "Group7:Error", 1);
-			}*/
+			validateRule();
 		}
 	}
 	public static void centerFrameOnDesktop(Component f) {

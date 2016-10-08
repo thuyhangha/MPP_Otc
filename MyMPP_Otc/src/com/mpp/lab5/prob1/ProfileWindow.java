@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -135,6 +136,18 @@ public class ProfileWindow extends JFrame {
 		favoriteMovieField.setText("");
 		favoriteRestaurantField.setText("");
 	}
+	
+	private void validateRule(){
+		try
+		{
+			RuleSetFactory.getRuleSet(this).applyRules(this);
+		}
+		catch(RuleException e)
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Group7:Error", 1);
+		}
+	}
+	
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
 			String name = idField.getText();
@@ -146,7 +159,7 @@ public class ProfileWindow extends JFrame {
 			String output = name + n + street + n + city + ", "+state+" "+zip;
 			System.out.println(output);
 			clearFields();
-			
+			validateRule();
 		}
 	}
 	class BackListener implements ActionListener {

@@ -29,7 +29,7 @@ public class AddressRuleSet implements RuleSet {
 			throw new RuleException("Zip must be numeric");	
 		if(!Utility.is5Digits(getZipValue))
 			throw new RuleException("Zip must be exactly 5 digits");
-		if(!Utility.contain2CharAZ(getStateValue))
+		if(!Utility.isAllCapitals(getStateValue, 2))
 			throw new RuleException("State field must be exactly 2 digits in A to Z");
 		if(!Utility.isEqual(getIdValue, getZipValue))
 			throw new RuleException("ID field may not equal zip field");
