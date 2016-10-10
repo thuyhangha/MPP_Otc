@@ -7,7 +7,7 @@ public class AddressRuleSet implements RuleSet {
 	@Override
 	public void applyRules(Component ob) throws RuleException {
 		// TODO Auto-generated method stub
-		AddrWindow addrWindow = new AddrWindow();
+		AddrWindow addrWindow = (AddrWindow)ob;
 		
 		String getIdValue = addrWindow.getIdValue().trim();
 		String getStreetValue = addrWindow.getStreetValue().trim();
@@ -23,15 +23,15 @@ public class AddressRuleSet implements RuleSet {
 			throw new RuleException("All fields must be nonempty");
 		}
 		
-		if(!Utility.isNumber(getIdValue))
+		else if(!Utility.isNumber(getIdValue))
 			throw new RuleException("ID field must be numeric");
-		if(!Utility.isNumber(getZipValue))
+		else if(!Utility.isNumber(getZipValue))
 			throw new RuleException("Zip must be numeric");	
-		if(!Utility.is5Digits(getZipValue))
+		else if(!Utility.is5Digits(getZipValue))
 			throw new RuleException("Zip must be exactly 5 digits");
-		if(!Utility.isAllCapitals(getStateValue, 2))
+		else if(!Utility.isAllCapitalsAndExactyEqualNumber(getStateValue, 2))
 			throw new RuleException("State field must be exactly 2 digits in A to Z");
-		if(!Utility.isEqual(getIdValue, getZipValue))
+		else if(Utility.isEqual(getIdValue, getZipValue))
 			throw new RuleException("ID field may not equal zip field");
 	}
 

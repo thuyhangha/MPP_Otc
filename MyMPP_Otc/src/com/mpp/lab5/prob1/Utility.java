@@ -1,7 +1,5 @@
 package com.mpp.lab5.prob1;
 
-import java.util.regex.Pattern;
-
 public class Utility {
 
 	public static boolean isEmpty(String input){
@@ -30,38 +28,29 @@ public class Utility {
        return false;
     }
 	
-	/*public static boolean contain2CharAZ(String input){
-		boolean containsAtLeastTwoLetters = Pattern.compile("[0-9].*[0-9]").matcher(input).find();
-		
-		return containsAtLeastTwoLetters;
-	}*/
-	
 	public static boolean isEqual(String input1, String input2){
 		if(input1.equals(input2))
 			return true;
 		return false;
 	}
 	
-	public static boolean containCharacterazAZNoSpaces(String input, int number)
+	public static boolean containCharacterazAZNoSpaces(String input)
 	{
 		if(!input.trim().equals(input)){
 			return false;
 		}
-		
-		int count = 0;
+	
 		for(int i=0;i<input.length();i++)
 		{		
-			if(Character.isLetter(input.charAt(i)))
+			if(!Character.isLetter(input.charAt(i)))
 			{
-				count ++;
+				return false;
 			}
 		}
-		if(count == number)
-			return true;
-		return false;
+		return true;
 	}
 
-	public static boolean isAllCapitals(String input, int number)
+	public static boolean isAllCapitalsAndExactyEqualNumber(String input, int number)
 	{
 		int count = 0;
 		for(int i=0;i<input.length();i++)
@@ -71,7 +60,7 @@ public class Utility {
 				count ++;
 			}
 		}
-		if(count == number)
+		if(count == number && count == input.length())
 			return true;
 		return false;
 	}

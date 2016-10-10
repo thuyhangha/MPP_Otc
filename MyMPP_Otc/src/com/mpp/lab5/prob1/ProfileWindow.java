@@ -141,6 +141,8 @@ public class ProfileWindow extends JFrame {
 		try
 		{
 			RuleSetFactory.getRuleSet(this).applyRules(this);
+			JOptionPane.showMessageDialog(null, "You input value successfully!", "Group7:Successful", 1);
+			this.setVisible(false);
 		}
 		catch(RuleException e)
 		{
@@ -158,7 +160,7 @@ public class ProfileWindow extends JFrame {
 			String n = System.getProperty("line.separator");
 			String output = name + n + street + n + city + ", "+state+" "+zip;
 			System.out.println(output);
-			clearFields();
+			//clearFields();
 			validateRule();
 		}
 	}

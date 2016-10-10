@@ -143,6 +143,8 @@ public class AddrWindow extends JFrame {
 		try
 		{
 			RuleSetFactory.getRuleSet(this).applyRules(this);
+			JOptionPane.showMessageDialog(null, "You input value successfully!", "Group7:Successful", 1);
+			this.setVisible(false);
 		}
 		catch(RuleException e)
 		{
@@ -160,9 +162,12 @@ public class AddrWindow extends JFrame {
 			String n = System.getProperty("line.separator");
 			String output = name + n + street + n + city + ", "+state+" "+zip;
 			System.out.println(output);
-			clearFields();
+			
+			//clearFields();
 			
 			validateRule();
+			
+			
 		}
 	}
 	public static void centerFrameOnDesktop(Component f) {
@@ -195,13 +200,4 @@ public class AddrWindow extends JFrame {
 		//mf.pack();
 		mf.setVisible(true);
 	}
-	
-	/*private JTextField idField;
-	private JTextField streetField;
-	private JTextField cityField;
-	private JTextField stateField;
-	private JTextField zipField;*/
-	/*Starting code for rule*/
-	
-	/*Ending code for rule*/
 }
