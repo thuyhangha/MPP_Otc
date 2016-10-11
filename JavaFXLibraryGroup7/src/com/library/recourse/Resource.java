@@ -23,6 +23,9 @@ public final class Resource implements Serializable {
 	public static final String CHECKINBOOK = "../com/library/view/CheckinBook.fxml";
 	
 	public static final String MEMBERVIEW = "../com/library/view/MembersView.fxml";
+	public static final String MEMBERADD = "../com/library/view/MemberAdd.fxml";
+	public static final String MEMBERADDTOMEMBERVIEW = "../view/MemberAdd.fxml";
+	public static final String MEMBERVIEWTOMEMBER = "../view/MembersView.fxml";
 	
 	public static final String DATA = "../../../com/library/view/resource/storage";
 	public static final String CSS = "/application/application.css";

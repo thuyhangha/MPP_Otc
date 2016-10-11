@@ -16,7 +16,9 @@ public class Main extends Application {
 			/*BorderPane root = new BorderPane();*/
 			//Parent root = FXMLLoader.load(getClass().getResource(Resource.CHECKOUTBOOKFORM));
 			Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEW));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,800,600);
+			/*Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERADD));
+			Scene scene = new Scene(root,500,600);*/
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

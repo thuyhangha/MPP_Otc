@@ -12,6 +12,8 @@ public interface DataAccess {
 	
 	public void addNewPerson(String personID, Person person);
 	
+	public HashMap<String, Person> getPersons();
+	
 	public void addLibraryMember(String id, LibraryMember libraryMember);
 
 	public HashMap<String, LibraryMember> getLibraryMember();

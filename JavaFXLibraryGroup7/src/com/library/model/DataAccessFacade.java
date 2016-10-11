@@ -151,6 +151,11 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		// TODO Auto-generated method stub
 		persons.put(personID, person);
 	}
+	
+	@Override
+	public HashMap<String, Person> getPersons() {
+		return (HashMap<String, Person>) persons;
+	}
 
 	@Override
 	public void addLibraryMember(String id, LibraryMember libraryMember) {
