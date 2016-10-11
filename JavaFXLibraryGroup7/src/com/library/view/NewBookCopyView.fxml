@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.library.controller.NewBookCopyController"
+          hgap="10" vgap="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <Label id="register-label" text="Add Book Copy" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+
+    <Label text="Copy Number" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+
+    <TextField fx:id="tfCopyNumber" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+    <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="2" GridPane.columnIndex="1" spacing="10">
+        <Button text="Cancel" onAction="#onClickCancel" />
+        <Button text="Add" onAction="#onClickAdd"/>
+    </HBox>
+    <stylesheets>
+        <URL value="@application.css"/>
+    </stylesheets>
+</GridPane>

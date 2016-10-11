@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.MembersViewController">
+    <GridPane alignment="CENTER" vgap="10" hgap="10"
+              AnchorPane.topAnchor="0"
+              AnchorPane.rightAnchor="0"
+              AnchorPane.leftAnchor="0"
+              AnchorPane.bottomAnchor="0">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+        <Label text="Member List" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TableView fx:id="tblMemberList"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"
+                   GridPane.vgrow="ALWAYS"
+                   GridPane.hgrow="ALWAYS">
+            <placeholder>
+                <Label text="Don't have any member!!!"/>
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="ID" text="ID" prefWidth="90" resizable="false">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="ID"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="firstName" text="First Name" prefWidth="110" resizable="false">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="firstName"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="lastName" text="Last Name" prefWidth="110" resizable="false">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="lastName"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="address" text="Address" minWidth="130">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="address"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="phone" text="Phone" prefWidth="130" resizable="false">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="phoneNumber"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <HBox GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="BASELINE_RIGHT">
+            <Button fx:id="btnAddNewMember" onAction="#goMemberAdd" text="Add"/>
+        </HBox>
+    </GridPane>
+</AnchorPane>
