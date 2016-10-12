@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.mpp.library.ui.controller.LoginUIController">
+    <GridPane id="background-color" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+              prefHeight="80">
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER" GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS">
+            <padding>
+                <Insets left="10" />
+            </padding>
+            <Label id="title-text" text="Login"/>
+        </HBox>
+    </GridPane>
+
+    <GridPane hgap="10.0" vgap="3.0"
+              AnchorPane.topAnchor="120"
+              AnchorPane.bottomAnchor="40"
+              AnchorPane.leftAnchor="40"
+              AnchorPane.rightAnchor="40">
+
+        <Label id="login-label" text="Username" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label id="login-label" text="Password" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+        <TextField fx:id="txtUsername" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <PasswordField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS"
+              alignment="BOTTOM_RIGHT" prefWidth="300">
+            <Label fx:id= "lblErrorMessage"/>
+        </HBox>
+
+        <Button fx:id="login" defaultButton="true" onAction="#loginUser" text="Login" disable="true"
+                GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    </GridPane>
+    <stylesheets>
+        <URL value="@application.css" />
+    </stylesheets>
+</AnchorPane>
+

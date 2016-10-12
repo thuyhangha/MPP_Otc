@@ -18,7 +18,7 @@ import com.library.entity.Person;
 
 public class DataAccessFacade implements DataAccess, Serializable {
 	enum StorageType {
-		BOOKS, MEMBERS, USERS, AUTHORS, PERSONS, LIBRARYMEMBERS, BOOKCOPIES;
+		BOOKS, USERS, AUTHORS, PERSONS, LIBRARYMEMBERS, BOOKCOPIES;
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
@@ -51,6 +51,11 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	@SuppressWarnings("unchecked")
 	public HashMap<String, Person> readPersonsMap() {
 		return (HashMap<String, Person>) readFromStorage(StorageType.PERSONS);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, LibraryMember> readLibraryMembersMap() {
+		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.LIBRARYMEMBERS);
 	}
 	
 	@Override
@@ -163,9 +168,13 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	
 	@Override
 	public void addLibraryMember(String id, LibraryMember libraryMember) {
-		// TODO Auto-generated method stub
-		libraryMembers.put(id, libraryMember);
-		saveToStorage(StorageType.LIBRARYMEMBERS, libraryMember);
+		HashMap<String, LibraryMember> memberMap = readLibraryMembersMap();
+		if (memberMap == null) {
+			memberMap = new HashMap<String, LibraryMember>();
+		}
+		String memberID = libraryMember.getMemberId();
+		memberMap.put(memberID, libraryMember);
+		saveToStorage(StorageType.LIBRARYMEMBERS, memberMap);
 	}
 	
 	static void saveToStorage(StorageType type, Object ob) {

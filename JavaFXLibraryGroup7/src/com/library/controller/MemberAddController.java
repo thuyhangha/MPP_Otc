@@ -3,11 +3,11 @@ package com.library.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import com.library.entity.Address;
+import com.library.entity.CheckoutRecord;
+import com.library.entity.LibraryMember;
 import com.library.entity.Person;
 import com.library.model.DataAccess;
 import com.library.recourse.Resource;
@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 
 public class MemberAddController implements Initializable {
 	@FXML
-	private TextField memberId;
+	private TextField txtMemberId;
 
 	@FXML
 	private TextField txtFirstName;
@@ -122,32 +122,27 @@ public class MemberAddController implements Initializable {
 		try {			
 			if(!isEmpty(lblFirstNameError.getText()) && !isEmpty(lblCityError.getText()) && !isEmpty(lblLastNameError.getText())
 			   && !isEmpty(lblPhoneError.getText()) && !isEmpty(lblStreetError.getText()) && !isEmpty(lblZipError.getText())){
-				String vstreet = txtStreet.getText();
-				String vcity = txtCity.getText();
-				String vstate = cmbState.getSelectionModel().getSelectedItem().toString();
+				String street = txtStreet.getText();
+				String city = txtCity.getText();
+				String state = cmbState.getSelectionModel().getSelectedItem().toString();
 				
 				//End validate
-				String vzip = txtZip.getText();
-				Address address = new Address(vstreet, vcity, vstate, vzip);
+				String zip = txtZip.getText();
+				Address address = new Address(street, city, state, zip);
 
-				String vmemberId = SystemController.getRandom();
-				String vfirstName = txtFirstName.getText();
-				String vlastName = txtLastName.getText();
-				String vphoneNumber = txtPhone.getText();
-				Person person = new Person(vmemberId, vfirstName, vlastName, vphoneNumber, address);
-				//Start Role
-				Set roles = new HashSet<>();
-				if(cbAdmin.isSelected())
-					roles.add(cbAdmin.getText());
-				if(cbLibrarian.isSelected())
-					roles.add(cbLibrarian.getText());
-				if(cbMember.isSelected())
-					roles.add(cbMember.getText());
-				person.setRoles(roles);
-				//End Role
+				String memberId = txtMemberId.getText();
+				String personId = SystemController.getRandom();
+				String firstName = txtFirstName.getText();
+				String lastName = txtLastName.getText();
+				String phoneNumber = txtPhone.getText();
+				
+				LibraryMember libraryMember = new LibraryMember(personId, firstName, lastName, phoneNumber, address, memberId,
+						new CheckoutRecord());
+				Person person = new Person(personId, firstName, lastName, phoneNumber, address);
 				DataAccess dataAccess  = SystemController.getDataAccessInstance();
+				dataAccess.addLibraryMember(libraryMember.getID(), libraryMember);
 				dataAccess.addNewPerson(person);
-			
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 		    	alert.setTitle("Information Dialog");
 		    	alert.setHeaderText("Success");

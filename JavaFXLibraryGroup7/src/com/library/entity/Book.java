@@ -11,6 +11,12 @@ public class Book implements Serializable{
 	private List<Author> lstAuthor;
 	private List<BookCopy> lstBookCopy;
 	
+	public Book(String iSBN, String title, int maxCheckoutLength) {
+		ISBN = iSBN;
+		this.title = title;
+		this.maxCheckoutLength = maxCheckoutLength;
+	}
+	
 	public Book(String iSBN, String title, int maxCheckoutLength, List<Author> lstAuthor) {
 		ISBN = iSBN;
 		this.title = title;

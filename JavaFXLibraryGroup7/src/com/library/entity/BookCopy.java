@@ -8,7 +8,7 @@ public class BookCopy implements Serializable {
 	private int copyNum;
 	private boolean isAvailable;
 	
-	BookCopy(Book book, int copyNum, boolean isAvailable) {
+	public BookCopy(Book book, int copyNum, boolean isAvailable) {
 		this.book = book;
 		this.copyNum = copyNum;
 		this.isAvailable = isAvailable;

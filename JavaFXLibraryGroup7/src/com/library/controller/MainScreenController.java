@@ -52,8 +52,10 @@ public class MainScreenController {
 	}
 	
 	@FXML
-	void goOverdueBook(ActionEvent event){
-		
+	void goOverdueBook(ActionEvent event) throws IOException{
+		rightPlitBorderPanel.getChildren().clear();
+		AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.BOOKVIEW));
+        rightPlitBorderPanel.setCenter(pane);
 	}
 	
 	@FXML
@@ -64,13 +66,17 @@ public class MainScreenController {
 	}
 	
 	@FXML
-	void goAddACopyExsitingBook(ActionEvent event){
-		
+	void goAddACopyExsitingBook(ActionEvent event) throws IOException{
+		rightPlitBorderPanel.getChildren().clear();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.NEWBOOKCOPYVIEW));
+        rightPlitBorderPanel.setCenter(pane);
 	}
 	
 	@FXML
-	void goAddABook(ActionEvent event){
-		
+	void goAddABook(ActionEvent event) throws IOException{
+		rightPlitBorderPanel.getChildren().clear();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.NEWBOOKVIEW));
+        rightPlitBorderPanel.setCenter(pane);
 	}
 	
 	@FXML
