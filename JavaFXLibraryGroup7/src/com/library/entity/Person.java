@@ -10,7 +10,7 @@ public class Person implements Serializable{
 	private String lastName;
 	private String phone;
 	private Address address;
-	private Set<UserRole> roles;
+
 	
 	public Person(String ID, String firstName, String lastName, String phone, Address address) {
 		this.ID = ID;
@@ -55,14 +55,6 @@ public class Person implements Serializable{
 	public String toString() {
 		return "\n FirstName: " + firstName + "\n" + " LastName: " + lastName + "\n" + " Phone: " + phone
 				+ address.toString();
-	}
-
-	public Set<UserRole> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<UserRole> roles) {
-		this.roles = roles;
 	}
 
 	public String getID() {

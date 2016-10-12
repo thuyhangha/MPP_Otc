@@ -3,17 +3,17 @@ package com.library.entity;
 import java.io.Serializable;
 
 public class LibraryMember extends Person implements Serializable {
-	private int memberId;
+	private String memberId;
 	private CheckoutRecord checkoutRecord;
 
-	public LibraryMember(String ID, String firstName, String lastName, String phone, Address address, int memberId,
+	public LibraryMember(String ID, String firstName, String lastName, String phone, Address address, String memberId,
 			CheckoutRecord checkoutRecord) {
 		super(ID, firstName, lastName, phone, address);
 		this.memberId = memberId;
 		this.checkoutRecord = checkoutRecord;
 	}
 
-	public int getMemberId() {
+	public String getMemberId() {
 		return memberId;
 	}
 

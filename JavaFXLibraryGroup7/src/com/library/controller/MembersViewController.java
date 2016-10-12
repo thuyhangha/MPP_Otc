@@ -48,25 +48,8 @@ public class MembersViewController implements Initializable{
 
     @FXML
     private TableColumn<Person, String> street;
-
-    @FXML
-    private Button btnAddNewMember;
     
     ObservableList<Person> personData ;
-    
-    @FXML
-    void goMemberAdd(ActionEvent event) throws IOException {
-    	try {
-	    	Stage stage = (Stage) btnAddNewMember.getScene().getWindow();
-	    	Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERADD));
-	        Scene scene = new Scene(root);
-		
-	    	stage.setScene(scene);
-	    	stage.show();
-    	 } catch (IOException e) {
-             e.printStackTrace();
-         }
-    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

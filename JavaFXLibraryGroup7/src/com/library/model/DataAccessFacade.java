@@ -52,6 +52,11 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		return (HashMap<String, Person>) readFromStorage(StorageType.PERSONS);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, LibraryMember> readLibraryMembersMap() {
+		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.LIBRARYMEMBERS);
+	}
+	
 	@Override
 	public void addBook(Book book) {
 		HashMap<String, Book> bookMap = readBookMap();
@@ -162,9 +167,13 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	
 	@Override
 	public void addLibraryMember(String id, LibraryMember libraryMember) {
-		// TODO Auto-generated method stub
-		libraryMembers.put(id, libraryMember);
-		saveToStorage(StorageType.LIBRARYMEMBERS, libraryMember);
+		HashMap<String, LibraryMember> memberMap = readLibraryMembersMap();
+		if (memberMap == null) {
+			memberMap = new HashMap<String, LibraryMember>();
+		}
+		String memberID = libraryMember.getMemberId();
+		memberMap.put(memberID, libraryMember);
+		saveToStorage(StorageType.LIBRARYMEMBERS, memberMap);
 	}
 	
 	static void saveToStorage(StorageType type, Object ob) {

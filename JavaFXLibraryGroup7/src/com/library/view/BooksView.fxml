@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.mpp.library.ui.controller.BookUIController">
+            fx:controller="com.library.controller.BooksViewController">
     <GridPane vgap="10" hgap="30" alignment="CENTER"
               AnchorPane.bottomAnchor="0"
               AnchorPane.leftAnchor="0"
