@@ -10,7 +10,7 @@ import com.library.entity.Person;
 
 public interface DataAccess {
 	
-	public void addNewPerson(String personID, Person person);
+	public void addNewPerson(Person person);
 	
 	public HashMap<String, Person> getPersons();
 	
@@ -20,9 +20,13 @@ public interface DataAccess {
 	
 	public LibraryMember getLibraryMemberById(String id);
 
-	public void addBook(String ISBN, Book book);
+	public void addBook(Book book);
 
 	public HashMap<String, Book> getBook();
+	
+	public void addBookCopy(BookCopy bookCopy);
+
+	public HashMap<String, BookCopy> getBookCopy();
 	
 	public void addAuthor(String str, Author author);
 	
@@ -30,7 +34,7 @@ public interface DataAccess {
 	
 	public BookCopy getAvailableBookCopy(String isbn);
 	
-	public void setBookCopyAsNotAvailable(String isbn, String copyNumber);
+	public void setBookCopyAsNotAvailable(String isbn, int copyNumber);
 	
 	public int getMemberId();
 	

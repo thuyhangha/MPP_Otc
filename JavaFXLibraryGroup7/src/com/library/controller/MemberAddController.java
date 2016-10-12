@@ -146,7 +146,7 @@ public class MemberAddController implements Initializable {
 				person.setRoles(roles);
 				//End Role
 				DataAccess dataAccess  = SystemController.getDataAccessInstance();
-				dataAccess.addNewPerson(person.getID(), person);
+				dataAccess.addNewPerson(person);
 			
 				Alert alert = new Alert(AlertType.INFORMATION);
 		    	alert.setTitle("Information Dialog");
