@@ -114,7 +114,7 @@ public class MemberAddController implements Initializable {
 	
 	@FXML
 	void goActionCancel(ActionEvent event) throws IOException {
-		goToMemberView();
+		goToMainScreen();
 	}
 	
 	@FXML
@@ -149,7 +149,7 @@ public class MemberAddController implements Initializable {
 		    	alert.setContentText("Member is added successful !");
 		    	alert.showAndWait();
 		    	
-		    	goToMemberView();		
+		    	goToMainScreen();		
 			}else {
 				showDialog("Error Input", "Error", "Please input correct all value!");
 			}
@@ -160,11 +160,11 @@ public class MemberAddController implements Initializable {
 	}
 		
 	//go to privious page - member view
-	public void goToMemberView(){
+	public void goToMainScreen(){
 		try{
 			Stage stage = (Stage) btnCancel.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEW));
-			Scene scene = new Scene(root);
+			Parent root = FXMLLoader.load(getClass().getResource(Resource.ADDTOMAINSCREEN));
+			Scene scene = new Scene(root, 1150, 800);
 			stage.setScene(scene);
 			stage.show();
 		}catch (Exception e) {
