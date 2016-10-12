@@ -168,7 +168,7 @@ public class MemberAddController implements Initializable {
 	public void goToMemberView(){
 		try{
 			Stage stage = (Stage) btnCancel.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEWTOMEMBER));
+			Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEW));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();

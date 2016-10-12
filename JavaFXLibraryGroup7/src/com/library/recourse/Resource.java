@@ -15,18 +15,18 @@ public final class Resource implements Serializable {
 	public static final String BOOKVIEW = "/View/BookView.fxml";
 	//public static final String MEMBEREDIT = "/View/MemberEdit.fxml";*/
 	
-	public static final String LIBRARIAN = "../com/library/view/Librarian.fxml";
+	/*public static final String LIBRARIAN = "../com/library/view/Librarian.fxml";
 	public static final String CHECKOUTBOOKFORM = "../com/library/view/CheckoutBookForm.fxml";
 	public static final String ADDCHECKOUTRECORD = "../com/library/view/AddCheckoutRecord.fxml";
 	public static final String CHECKOUTRECORDVIEW = "../com/library/view/CheckoutRecordView.fxml";
 	public static final String CHECKOUTRECORDHISTORY = "../com/library/view/CheckoutRecordHistory.fxml";
-	public static final String CHECKINBOOK = "../com/library/view/CheckinBook.fxml";
+	public static final String CHECKINBOOK = "../com/library/view/CheckinBook.fxml";*/
 	
-	public static final String MEMBERVIEW = "../com/library/view/MembersView.fxml";
-	public static final String MEMBERADD = "../com/library/view/MemberAdd.fxml";
-	public static final String MEMBERADDTOMEMBERVIEW = "../view/MemberAdd.fxml";
-	public static final String MEMBERVIEWTOMEMBER = "../view/MembersView.fxml";
+	public static final String MAINSCREEN = "../com/library/view/MainScreen.fxml";
 	
+	public static final String MEMBERVIEW = "../view/MembersView.fxml";
+	public static final String MEMBERADD = "../view/MemberAdd.fxml";
+	public static final String CHECKOUTBOOKFORM = "../view/CheckoutBookForm.fxml";
 	public static final String DATA = "../../../com/library/view/resource/storage";
 	public static final String CSS = "/application/application.css";
 }

@@ -13,13 +13,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			/*BorderPane root = new BorderPane();*/
-			//Parent root = FXMLLoader.load(getClass().getResource(Resource.CHECKOUTBOOKFORM));
-			Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEW));
-			Scene scene = new Scene(root,800,600);
-			/*Parent root = FXMLLoader.load(getClass().getResource(Resource.MEMBERADD));
-			Scene scene = new Scene(root,500,600);*/
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Parent root = FXMLLoader.load(getClass().getResource(Resource.MAINSCREEN));
+			Scene scene = new Scene(root, 1150, 800);
+			primaryStage.setTitle("Library project group 7");
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
