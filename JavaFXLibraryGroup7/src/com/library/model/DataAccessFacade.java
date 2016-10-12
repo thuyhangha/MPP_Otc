@@ -18,14 +18,13 @@ import com.library.entity.Person;
 
 public class DataAccessFacade implements DataAccess, Serializable {
 	enum StorageType {
-		BOOKS, MEMBERS, USERS, AUTHORS, PERSONS, LIBRARYMEMBERS, BOOKCOPIES;
+		PERSONS, BOOKS, BOOKCOPIES, MEMBERS, USERS, AUTHORS, LIBRARYMEMBERS;
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
 			+ "\\src\\dataaccess\\storage";
 	
 	private HashMap<String,LibraryMember> libraryMembers = new HashMap<String,LibraryMember>();
-	private HashMap<String,Book> books = new HashMap<String,Book>();
 	private HashMap<String,Author> authors = new HashMap<String,Author>();
 	
 	private int memberId;
