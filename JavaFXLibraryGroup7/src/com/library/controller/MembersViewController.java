@@ -1,55 +1,48 @@
 package com.library.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import com.library.entity.LibraryMember;
 import com.library.entity.Person;
 import com.library.model.DataAccess;
-import com.library.recourse.Resource;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class MembersViewController implements Initializable{
 	
 	@FXML
-    private TableView<Person> tblMemberList;
+    private TableView<LibraryMember> tblMemberList;
 
     @FXML
-    private TableColumn<Person, Integer> ID;
+    private TableColumn<LibraryMember, String> ID;
 
     @FXML
-    private TableColumn<Person, String> firstName;
+    private TableColumn<LibraryMember, String> firstName;
 
     @FXML
-    private TableColumn<Person, String> lastName;
+    private TableColumn<LibraryMember, String> lastName;
 
     @FXML
-    private TableColumn<Person, String> phone;
+    private TableColumn<LibraryMember, String> phone;
 
     @FXML
-    private TableColumn<Person, String> street;
+    private TableColumn<LibraryMember, String> street;
     
-    ObservableList<Person> personData ;
+    ObservableList<LibraryMember> personData ;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -57,10 +50,9 @@ public class MembersViewController implements Initializable{
 		DataAccess dataAccess  = SystemController.getDataAccessInstance();
 		
 		//start
-		HashMap<String, Person> hashMap = new HashMap<String, Person>();
-    	hashMap = (HashMap<String, Person>) dataAccess.getPersons();
+		HashMap<String, LibraryMember> hashMap = dataAccess.getLibraryMember();
 
-    	personData = FXCollections.observableArrayList();
+    	personData = FXCollections.observableArrayList(); 
 
     	Set set = hashMap.keySet();
         Iterator iter = set.iterator();
@@ -68,19 +60,16 @@ public class MembersViewController implements Initializable{
     		personData.add(hashMap.get(iter.next()));
     	}
 
-    	ID.setCellValueFactory(new PropertyValueFactory<Person,Integer>("ID"));
+    	ID.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("memberId"));
 
-    	firstName.setCellValueFactory( new PropertyValueFactory<Person,String>("firstName"));
-    	lastName.setCellValueFactory( new PropertyValueFactory<Person,String>("lastName"));
-    	phone.setCellValueFactory( new PropertyValueFactory<Person,String>("phone"));
+    	firstName.setCellValueFactory( new PropertyValueFactory<LibraryMember,String>("firstName"));
+    	lastName.setCellValueFactory( new PropertyValueFactory<LibraryMember,String>("lastName"));
+    	phone.setCellValueFactory( new PropertyValueFactory<LibraryMember,String>("phone"));
 
 
-		street.setCellValueFactory(new Callback<CellDataFeatures<Person, String>, ObservableValue<String>>() {
-		     public ObservableValue<String> call(CellDataFeatures<Person, String> p) {
-		         String rStreet = p.getValue().getAddress().getStreet().trim() + " "
-		    	        		 + p.getValue().getAddress().getCity().trim() + " "
-		    	        		 + p.getValue().getAddress().getState().trim() + " "
-		    	        		 + p.getValue().getAddress().getZip().trim(); 
+		street.setCellValueFactory(new Callback<CellDataFeatures<LibraryMember, String>, ObservableValue<String>>() {
+		     public ObservableValue<String> call(CellDataFeatures<LibraryMember, String> p) {
+		         String rStreet = p.getValue().getAddress().getStringAddress(); 
 		         return new SimpleStringProperty(rStreet);
 		     }
 		});

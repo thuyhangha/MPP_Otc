@@ -1,16 +1,21 @@
 package com.library.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Person implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2852652390481003988L;
 	private String ID;
 	private String firstName;
 	private String lastName;
 	private String phone;
 	private Address address;
-
+	private Set<UserRole> roles;
 	
 	public Person(String ID, String firstName, String lastName, String phone, Address address) {
 		this.ID = ID;
@@ -18,6 +23,7 @@ public class Person implements Serializable{
 		this.lastName = lastName;
 		this.phone = phone;
 		this.address = address;
+		roles = new HashSet<>();
 	}
 
 	public String getFirstName() {
@@ -60,4 +66,21 @@ public class Person implements Serializable{
 	public String getID() {
 		return ID;
 	}
+	
+	public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+    
+    public Person addRole(UserRole ur){
+        this.roles.add(ur);
+        return this;
+    }
+    
+    public String getFullName() {
+    	return firstName.trim() + " " + lastName.trim();
+    }
 }

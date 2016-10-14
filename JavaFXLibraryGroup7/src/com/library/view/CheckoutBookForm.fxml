@@ -36,7 +36,7 @@
         <TableView fx:id="checkoutEntryTable" GridPane.columnIndex="0" GridPane.rowIndex="1"
                    GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
             <columns>
-                <TableColumn minWidth="90" text="ISBN" resizable="false">
+                <TableColumn fx:id="isbnColumn" minWidth="90" text="ISBN" resizable="false">
                     <cellValueFactory>
                         <PropertyValueFactory property="isbn"/>
                     </cellValueFactory>
@@ -46,12 +46,12 @@
                         <PropertyValueFactory property="title"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn minWidth="110" text="Checkout Date">
+                <TableColumn fx:id="checkoutDateColumn" minWidth="110" text="Checkout Date">
                     <cellValueFactory>
                         <PropertyValueFactory property="checkoutDate"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn minWidth="110" text="Due Date">
+                <TableColumn fx:id="dueDateColumn" minWidth="110" text="Due Date">
                     <cellValueFactory>
                         <PropertyValueFactory property="dueDate"/>
                     </cellValueFactory>

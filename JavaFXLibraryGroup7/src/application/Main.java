@@ -8,7 +8,10 @@ import com.library.entity.Address;
 import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.entity.BookCopy;
+import com.library.entity.CheckoutRecord;
+import com.library.entity.LibraryMember;
 import com.library.entity.Person;
+import com.library.entity.UserRole;
 import com.library.model.DataAccess;
 import com.library.model.DataAccessFacade;
 import com.library.recourse.Resource;
@@ -48,11 +51,13 @@ public class Main extends Application {
 		  DataAccess da = new DataAccessFacade();
 		  // PERSONS
 		  Address address = new Address("S1", "Fairfield", "Iowa", "52556");
-		  Person p1 = new Person("1", "Hang", "Ha", "000000", address);
-		  Person p2 = new Person("2", "Thuy Hang", "Ha", "000002", address);
-		  da.addNewPerson(p1);
-		  da.addNewPerson(p2);
-		  HashMap<String, Person> phash = da.getPersons();
+		  LibraryMember p1 = new LibraryMember("1", "Hang", "Ha", "0000", address, "1");
+		  p1.getRoles().add(UserRole.MEMBER);
+		  LibraryMember p2 = new LibraryMember("2", "Thuy Hang", "Ha", "0002", address, "2");
+		  p2.getRoles().add(UserRole.MEMBER);
+		  da.addLibraryMember(p1);
+		  da.addLibraryMember(p2);
+		  HashMap<String, LibraryMember> phash = da.getLibraryMember();
 		  for (String pId : phash.keySet()) {
 		   System.out.println("Person ID: " + pId);
 		  }
@@ -60,21 +65,25 @@ public class Main extends Application {
 		  Author author = new Author("123", "ABC", "HTH", "12323131", address, "credent");
 		  List<Author> lstAuthor = Arrays.asList(author);
 		  Book book = new Book("123", "MPP", 1000, lstAuthor);
+		  
+		  // BOOKCOPIES
+		  BookCopy bookCopy1 = new BookCopy(book, 1, true);
+		  da.addBookCopy(bookCopy1);
+//		  BookCopy bookCopy2 = new BookCopy(book, 2, true);
+//		  da.addBookCopy(bookCopy2);
+//		  BookCopy bookCopy3 = new BookCopy(book, 3, true);
+//		  da.addBookCopy(bookCopy3);
+//		  HashMap<String, BookCopy> bcphash = da.getBookCopy();
+//		  for (String bId : bcphash.keySet()) {
+//		   System.out.println("Book isbn+number: " + bId);
+//		  }
+		  // Set book copy for book
+		  List<BookCopy> listBookCopy = Arrays.asList(bookCopy1);
+		  book.setBookCopy(listBookCopy);
 		  da.addBook(book);
 		  HashMap<String, Book> bhash = da.getBook();
 		  for (String bId : bhash.keySet()) {
 		   System.out.println("Book ID: " + bId);
-		  }
-		  // BOOKCOPIES
-		  BookCopy bookCopy1 = new BookCopy(book, 1, true);
-		  da.addBookCopy(bookCopy1);
-		  BookCopy bookCopy2 = new BookCopy(book, 2, true);
-		  da.addBookCopy(bookCopy2);
-		  BookCopy bookCopy3 = new BookCopy(book, 3, true);
-		  da.addBookCopy(bookCopy3);
-		  HashMap<String, BookCopy> bcphash = da.getBookCopy();
-		  for (String bId : bcphash.keySet()) {
-		   System.out.println("Book isbn+number: " + bId);
 		  }
 		  // END TEST CODE
 		 }

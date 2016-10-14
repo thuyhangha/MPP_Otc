@@ -1,7 +1,10 @@
 package com.library.controller;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -11,20 +14,34 @@ import com.library.entity.CheckoutRecord;
 import com.library.entity.CheckoutRecordEntry;
 import com.library.entity.LibraryMember;
 import com.library.model.DataAccess;
+import com.sun.prism.impl.Disposer.Record;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 
-public class CheckoutRecordController {
+public class CheckoutRecordController implements Initializable{
 	
 	DataAccess dataAccess  = SystemController.getDataAccessInstance();
 	
+	ObservableList<CheckoutRecordEntry> memberCheckoutRecords;
+	
+	@FXML
+    private TableView<CheckoutRecordEntry> checkoutEntryTable;
 	@FXML
 	private TextField txtMemberID;
 	@FXML
@@ -37,7 +54,16 @@ public class CheckoutRecordController {
 	private TextField txtISBN;
 
 	@FXML
-	private TableColumn titleColumn;
+	private TableColumn<CheckoutRecordEntry, String> isbnColumn;
+	
+	@FXML
+	private TableColumn<CheckoutRecordEntry, String> titleColumn;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		memberCheckoutRecords = FXCollections.observableArrayList();
+		checkoutEntryTable.setItems(memberCheckoutRecords);
+	}
 	
     @FXML
     void addCheckoutRecord(ActionEvent event) {
@@ -45,10 +71,10 @@ public class CheckoutRecordController {
     	String id = txtMemberID.getText();
     	String isbn = txtISBN.getText();
  
-    	boolean bookCopyFound = true;
-    	boolean libraryMemberFound = true;
+    	boolean bookCopyFound = false;
+    	boolean libraryMemberFound = false;
     	
-    	Book book = null;
+    	Book book = dataAccess.getBook().get(isbn);
     	BookCopy bookCopy = null;
     	LibraryMember libraryMember = null;
     	
@@ -60,13 +86,17 @@ public class CheckoutRecordController {
     	libraryMember = dataAccess.getLibraryMemberById(id);
     	if(libraryMember != null){
     		libraryMemberFound = true;
+    		txtName.setText(libraryMember.getFullName());
+    		txtAddress.setText(libraryMember.getAddress().getStringAddress());
     	}
  
     	if(!bookCopyFound){
-    		JOptionPane.showMessageDialog(null, "Please input correct bookCopy", "Group7:Error", 1);
+    		showAlerMessage("Information Dialog", "Checkout Error", "This book is not available!!", AlertType.ERROR);
     	}else if (!libraryMemberFound) {
-    		JOptionPane.showMessageDialog(null, "Please input correct library member", "Group7:Error", 1);
+    		showAlerMessage("Information Dialog", "Checkout Error", "Please input correct member Id!", AlertType.ERROR);	
 		}else if(bookCopyFound && libraryMemberFound){
+			// Update checked out book and related information
+			dataAccess.setBookCopyAsNotAvailable(isbn, bookCopy.getCopyNum());
     		CheckoutRecord checkoutRecord = libraryMember.getCheckoutRecord();
         	if( checkoutRecord == null){
         		checkoutRecord = new CheckoutRecord();
@@ -75,18 +105,30 @@ public class CheckoutRecordController {
         	List<CheckoutRecordEntry> entries = checkoutRecord.getRecordEntries();
         	CheckoutRecordEntry entry = new CheckoutRecordEntry(bookCopy, LocalDate.now(), LocalDate.now().plusDays(21));
         	entries.add(entry);
-        	
-        	
-        	dataAccess.setBookCopyAsNotAvailable(isbn, bookCopy.getCopyNum());
-        	
-        	
-        	Alert alert = new Alert(AlertType.INFORMATION);
-	    	alert.setTitle("Information Dialog");
-	    	alert.setHeaderText("Success");
-	    	alert.setContentText(" Book Checkout successful !");
-	    	alert.showAndWait();
-        	
+        	libraryMember.setCheckoutRecord(checkoutRecord);
+        	dataAccess.addLibraryMember(libraryMember);
+        	memberCheckoutRecords.addAll(entries);
+        	isbnColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
+			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {
+			         String isbnString = p.getValue().getBookCopy().getBook().getISBN(); 
+			         return new SimpleStringProperty(isbnString);
+			     }
+			});
+        	titleColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
+			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {
+			         String titleString = p.getValue().getBookCopy().getBook().getTitle(); 
+			         return new SimpleStringProperty(titleString);
+			     }
+			});
+        	showAlerMessage("Information Dialog", "Checkout Success", " Book Checkout successful !", AlertType.INFORMATION);
     	}
-
+    }
+    
+    private void showAlerMessage(String title, String header, String message, AlertType alertType) {
+    	Alert alert = new Alert(alertType);
+    	alert.setTitle(title);
+    	alert.setHeaderText(header);
+    	alert.setContentText(message);
+    	alert.showAndWait();
     }
 }

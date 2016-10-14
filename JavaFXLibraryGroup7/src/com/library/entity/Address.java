@@ -1,13 +1,13 @@
 package com.library.entity;
 
 import java.io.Serializable;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.fxml.Initializable;
 
 public class Address implements Serializable{
-    private String street;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4915230250042092851L;
+	private String street;
     private String city;
     private String state;
     private String zip;
@@ -58,6 +58,8 @@ public class Address implements Serializable{
 		this.zip = zip;
 	}
 
-
+	public String getStringAddress() {
+		return street.trim() + " " + city.trim() + " " + state.trim() + " " + zip.trim();
+	}
 
 }

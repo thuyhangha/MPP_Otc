@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutRecord implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7398236537637723177L;
 	private String ID;
 	private Person member;
     private List<CheckoutRecordEntry> checkoutRecordEntry;
@@ -13,7 +17,6 @@ public class CheckoutRecord implements Serializable{
     	checkoutRecordEntry = new ArrayList<CheckoutRecordEntry>();
     }
     
-
     public CheckoutRecord(String ID, Person member) {
 		super();
 		this.ID = ID;

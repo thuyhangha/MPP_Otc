@@ -136,12 +136,10 @@ public class MemberAddController implements Initializable {
 				String lastName = txtLastName.getText();
 				String phoneNumber = txtPhone.getText();
 				
-				LibraryMember libraryMember = new LibraryMember(personId, firstName, lastName, phoneNumber, address, memberId,
-						new CheckoutRecord());
-				Person person = new Person(personId, firstName, lastName, phoneNumber, address);
+				LibraryMember libraryMember = new LibraryMember(personId, firstName, lastName, phoneNumber, address, memberId);
+				
 				DataAccess dataAccess  = SystemController.getDataAccessInstance();
-				dataAccess.addLibraryMember(libraryMember.getID(), libraryMember);
-				dataAccess.addNewPerson(person);
+				dataAccess.addLibraryMember(libraryMember);
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 		    	alert.setTitle("Information Dialog");

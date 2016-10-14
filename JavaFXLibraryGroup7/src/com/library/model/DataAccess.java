@@ -14,7 +14,7 @@ public interface DataAccess {
 	
 	public HashMap<String, Person> getPersons();
 	
-	public void addLibraryMember(String id, LibraryMember libraryMember);
+	public void addLibraryMember(LibraryMember libraryMember);
 
 	public HashMap<String, LibraryMember> getLibraryMember();
 	
@@ -35,9 +35,5 @@ public interface DataAccess {
 	public BookCopy getAvailableBookCopy(String isbn);
 	
 	public void setBookCopyAsNotAvailable(String isbn, int copyNumber);
-	
-	public int getMemberId();
-	
-	public void setMemberId(int id);
 
 }

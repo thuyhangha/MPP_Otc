@@ -17,21 +17,20 @@ import com.library.entity.LibraryMember;
 import com.library.entity.Person;
 
 public class DataAccessFacade implements DataAccess, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4736496920387924367L;
+
 	enum StorageType {
-		PERSONS, BOOKS, BOOKCOPIES, MEMBERS, USERS, AUTHORS, LIBRARYMEMBERS;
+		PERSONS, BOOKS, BOOKCOPIES, USERS, AUTHORS, LIBRARYMEMBERS;
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
-			+ "\\src\\dataaccess\\storage";
-	
-	private HashMap<String,LibraryMember> libraryMembers = new HashMap<String,LibraryMember>();
-	private HashMap<String,Author> authors = new HashMap<String,Author>();
-	
-	private int memberId;
+			+ "/src/dataaccess/storage";
 
 	@Override
 	public void addNewPerson(Person person) {
-		// TODO Auto-generated method stub
 		HashMap<String, Person> personMap = readPersonsMap();
 		if (personMap == null) {
 			personMap = new HashMap<String, Person>();
@@ -50,11 +49,6 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	@SuppressWarnings("unchecked")
 	public HashMap<String, Person> readPersonsMap() {
 		return (HashMap<String, Person>) readFromStorage(StorageType.PERSONS);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public HashMap<String, LibraryMember> readLibraryMembersMap() {
-		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.LIBRARYMEMBERS);
 	}
 	
 	@Override
@@ -103,7 +97,6 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	public BookCopy getAvailableBookCopy(String isbn) {
 		
 		HashMap<String,Book> books = getBook();
-
 		Book book = books.get(isbn);
 		
 		BookCopy bc = null;
@@ -121,13 +114,25 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	
 	@Override
 	public void setBookCopyAsNotAvailable(String isbn, int copyNumber) {
-		HashMap<String, Book> hasMap = getBook();		
-		for(BookCopy bc: hasMap.get(isbn).getListOfBookCopy()){			
+		HashMap<String, Book> bookMap = getBook();		
+		for(BookCopy bc: bookMap.get(isbn).getListOfBookCopy()){			
 			if(bc.getCopyNum() == copyNumber){
 				bc.setAvailability(false);
 				break;
 			}
 		}
+		saveToStorage(StorageType.BOOKS, bookMap);
+	}
+	
+	@Override
+	public void addLibraryMember(LibraryMember libraryMember) {
+		HashMap<String, LibraryMember> memberMap = readLibraryMembersMap();
+		if (memberMap == null) {
+			memberMap = new HashMap<String, LibraryMember>();
+		}
+		String memberID = libraryMember.getMemberId();
+		memberMap.put(memberID, libraryMember);
+		saveToStorage(StorageType.LIBRARYMEMBERS, memberMap);
 	}
 	
 	@Override
@@ -140,40 +145,33 @@ public class DataAccessFacade implements DataAccess, Serializable {
 
 	@Override
 	public HashMap<String, LibraryMember> getLibraryMember(){
-		return (HashMap<String, LibraryMember>)libraryMembers;
+		return readLibraryMembersMap();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, LibraryMember> readLibraryMembersMap() {
+		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.LIBRARYMEMBERS);
 	}
 
 	@Override
 	public void addAuthor(String str, Author author){
-		authors.put(str, author);
-		saveToStorage(StorageType.AUTHORS, author);
+		HashMap<String, Author> authorMap = readAuthorMap();
+		if (authorMap == null) {
+			authorMap = new HashMap<String, Author>();
+		}
+		String authorID = author.getAuthorId();
+		authorMap.put(authorID, author);
+		saveToStorage(StorageType.AUTHORS, authorMap);
 	}
 	
 	@Override
 	public HashMap<String, Author> getAuthor() {
-		return (HashMap<String, Author>) authors;
-	}
-
-	@Override
-	public int getMemberId() {
-		return memberId;
-	}
-
-	@Override
-	public void setMemberId(int id) {
-		this.memberId = id;
-		
+		return readAuthorMap();
 	}
 	
-	@Override
-	public void addLibraryMember(String id, LibraryMember libraryMember) {
-		HashMap<String, LibraryMember> memberMap = readLibraryMembersMap();
-		if (memberMap == null) {
-			memberMap = new HashMap<String, LibraryMember>();
-		}
-		String memberID = libraryMember.getMemberId();
-		memberMap.put(memberID, libraryMember);
-		saveToStorage(StorageType.LIBRARYMEMBERS, memberMap);
+	@SuppressWarnings("unchecked")
+	private HashMap<String, Author> readAuthorMap() {
+		return (HashMap<String, Author>) readFromStorage(StorageType.AUTHORS);
 	}
 	
 	static void saveToStorage(StorageType type, Object ob) {
