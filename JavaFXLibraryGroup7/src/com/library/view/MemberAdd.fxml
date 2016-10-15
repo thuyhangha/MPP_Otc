@@ -38,6 +38,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label text="First Name" />
@@ -61,7 +62,8 @@
             <Label fx:id="lblCityError" textFill="#f81501" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label fx:id="lblZipError" textFill="#f81501" GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <Label fx:id="lblPhoneError" textFill="#f81501" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <TextField fx:id="txtMemberId" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <TextField fx:id="txtMemberID" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <Label fx:id="lblMemberIDError" GridPane.columnIndex="1" GridPane.rowIndex="15" />
          
          </children>
       </GridPane>

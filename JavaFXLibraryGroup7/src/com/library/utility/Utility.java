@@ -48,8 +48,8 @@ public class Utility {
 		return true;
 	}
 
-	public static boolean is5Digits(String input) {
-		if (input.length() == 5)
+	public static boolean isExactlyNumberLength(String input, int mylength) {
+		if (input.length() == mylength)
 			return true;
 		return false;
 	}
@@ -102,6 +102,20 @@ public class Utility {
 		});
 	}
 
+	public static void checkExactlyNumberLengthTextField(TextField txtField, Label lblField, int myLength) {
+
+		txtField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if (txtField.isFocused() == false) {
+				if (!isExactlyNumberLength(txtField.getText(), myLength)) {
+					setMessage(lblField, "Please input this field " + myLength + "digits", Color.RED);
+				} else {
+					lblField.setVisible(false);
+					lblField.setText("");
+				}
+			}
+		});
+	}
+	
 	public static void setMessage(Label l, String message, Color color) {
 		l.setText(message);
 		l.setTextFill(color);

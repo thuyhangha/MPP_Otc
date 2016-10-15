@@ -6,20 +6,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.library.entity.Address;
-import com.library.entity.CheckoutRecord;
 import com.library.entity.LibraryMember;
-import com.library.entity.Person;
 import com.library.model.DataAccess;
-import com.library.recourse.Resource;
 import com.library.utility.Utility;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -27,12 +20,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class MemberAddController implements Initializable {
-	@FXML
-	private TextField txtMemberId;
 
 	@FXML
 	private TextField txtFirstName;
@@ -53,6 +42,9 @@ public class MemberAddController implements Initializable {
 	private TextField txtZip;
 	
 	@FXML
+	private TextField txtMemberID;
+	
+	@FXML
 	private ComboBox cmbState;
 
 	@FXML
@@ -60,13 +52,6 @@ public class MemberAddController implements Initializable {
 	
 	@FXML
 	private Button btnAddMember;
-	
-	@FXML
-	private CheckBox cbAdmin;
-	@FXML
-	private CheckBox cbLibrarian;
-	@FXML
-	private CheckBox cbMember;
 	
 	@FXML
 	private Label lblFirstNameError;
@@ -85,6 +70,10 @@ public class MemberAddController implements Initializable {
 	
 	@FXML
 	private Label lblPhoneError;
+	
+	@FXML
+	private Label lblMemberIDError;
+	
 	
 	public void setData(){
 		String[] states = {"California", "Alabama", "Arkansas", "Arizona", "Alaska", "Colorado",
@@ -105,24 +94,26 @@ public class MemberAddController implements Initializable {
 		// TODO Auto-generated method stub
 		setData();
 		
-		checkValidTextField(txtFirstName, lblFirstNameError);
-		checkValidTextField(txtLastName, lblLastNameError);
-		checkValidTextField(txtCity, lblCityError);
-		checkValidTextField(txtPhone, lblPhoneError);
-		checkValidTextField(txtStreet, lblStreetError);
-		checkValidTextField(txtZip, lblZipError);
+		Utility.checkEmptyTextField(txtFirstName, lblFirstNameError);
+		Utility.checkEmptyTextField(txtLastName, lblLastNameError);
+		Utility.checkEmptyTextField(txtCity, lblCityError);
+		Utility.checkNumberTextField(txtPhone, lblPhoneError);
+		Utility.checkEmptyTextField(txtStreet, lblStreetError);
+		
+		Utility.checkEmptyTextField(txtMemberID, lblMemberIDError);
+		Utility.checkExactlyNumberLengthTextField(txtZip, lblZipError, 5);
 	}
 	
 	@FXML
 	void goActionCancel(ActionEvent event) throws IOException {
-		goToMainScreen();
+		
 	}
 	
 	@FXML
 	void goAddMember(ActionEvent event) throws IOException {
 		try {			
-			if(!isEmpty(lblFirstNameError.getText()) && !isEmpty(lblCityError.getText()) && !isEmpty(lblLastNameError.getText())
-			   && !isEmpty(lblPhoneError.getText()) && !isEmpty(lblStreetError.getText()) && !isEmpty(lblZipError.getText())){
+			if(Utility.isEmpty(lblFirstNameError.getText()) && Utility.isEmpty(lblCityError.getText()) && Utility.isEmpty(lblLastNameError.getText())
+			   && Utility.isEmpty(lblPhoneError.getText()) && Utility.isEmpty(lblStreetError.getText()) && Utility.isEmpty(lblZipError.getText())){
 				String street = txtStreet.getText();
 				String city = txtCity.getText();
 				String state = cmbState.getSelectionModel().getSelectedItem().toString();
@@ -131,7 +122,7 @@ public class MemberAddController implements Initializable {
 				String zip = txtZip.getText();
 				Address address = new Address(street, city, state, zip);
 
-				String memberId = txtMemberId.getText();
+				String memberId = txtMemberID.getText();
 				String personId = Utility.getRandom();
 				String firstName = txtFirstName.getText();
 				String lastName = txtLastName.getText();
@@ -148,71 +139,10 @@ public class MemberAddController implements Initializable {
 		    	alert.setContentText("Member is added successful !");
 		    	alert.showAndWait();
 		    	
-		    	goToMainScreen();		
-			}else {
-				showDialog("Error Input", "Error", "Please input correct all value!");
+		    	Utility.goToMainScreen(btnAddMember, getClass());		
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 	}
-		
-	//go to privious page - member view
-	public void goToMainScreen(){
-		try{
-			Stage stage = (Stage) btnCancel.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource(Resource.SCREENTOMAINSCREEN));
-			Scene scene = new Scene(root, 1150, 800);
-			stage.setScene(scene);
-			stage.show();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
-
-	//Start validation	
-	public boolean isEmpty(String txt) {
-		if(txt.isEmpty())
-			return false;
-		return true;
-	}
-	
-	public boolean isNumber(TextField txt)
-	{
-	  return txt.getText().trim().matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
-	}
-	
-	public void checkValidTextField(TextField txtField, Label lblField) {
-		
-		txtField.focusedProperty().addListener((observable, oldValue, newValue) ->
-		{
-		   if(txtField.isFocused() == false)
-		   {
-			   if(!isEmpty(txtField.getText().trim())){
-				   	lblField.setVisible(true);					
-					setMessage(lblField,"You can't leave this empty.",Color.RED);
-				}else if((txtField.getId().equals(txtZip.getId()) || txtField.getId().equals(txtPhone.getId())) && !isNumber(txtField)){
-					setMessage(lblField,"Please input umber",Color.RED);
-				}else {
-					lblField.setVisible(false);
-					lblField.setText("");
-				}
-		   }
-		});
-	}
-	
-	public void setMessage(Label l, String message, Color color){
-		l.setText(message);
-		l.setTextFill(color);
-		l.setVisible(true); 
-	}
-	
-	public void showDialog(String title, String headerText, String contentText) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle(title);
-    	alert.setHeaderText(headerText);
-    	alert.setContentText(contentText);
-    	alert.showAndWait();
-	}
-}
