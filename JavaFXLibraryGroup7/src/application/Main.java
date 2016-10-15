@@ -33,7 +33,7 @@ public class Main extends Application {
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-//			generateDummyData(); 
+			generateDummyData(); 
 			/*TestData test = new TestData();
 			SerializeAll seALL = new SerializeAll();
 			seALL.deSerializeData();*/
@@ -64,23 +64,15 @@ public class Main extends Application {
 		  // BOOKS
 		  Author author = new Author("123", "ABC", "HTH", "12323131", address, "credent");
 		  List<Author> lstAuthor = Arrays.asList(author);
-		  Book book = new Book("123", "MPP", 1000, lstAuthor);
-		  
-		  // BOOKCOPIES
-		  BookCopy bookCopy1 = new BookCopy(book, 1, true);
+		  Book book1 = new Book("123", "MPP 1", 1000, lstAuthor);
+		  BookCopy bookCopy1 = new BookCopy(book1, 1, true);
 		  da.addBookCopy(bookCopy1);
-//		  BookCopy bookCopy2 = new BookCopy(book, 2, true);
-//		  da.addBookCopy(bookCopy2);
-//		  BookCopy bookCopy3 = new BookCopy(book, 3, true);
-//		  da.addBookCopy(bookCopy3);
-//		  HashMap<String, BookCopy> bcphash = da.getBookCopy();
-//		  for (String bId : bcphash.keySet()) {
-//		   System.out.println("Book isbn+number: " + bId);
-//		  }
-		  // Set book copy for book
-		  List<BookCopy> listBookCopy = Arrays.asList(bookCopy1);
-		  book.setBookCopy(listBookCopy);
-		  da.addBook(book);
+		  BookCopy bookCopy2 = new BookCopy(book1, 2, true);
+		  da.addBookCopy(bookCopy2);
+		  BookCopy bookCopy3 = new BookCopy(book1, 3, true);
+		  List<BookCopy> listBookCopy = Arrays.asList(bookCopy1, bookCopy2, bookCopy3);
+		  book1.setBookCopy(listBookCopy);
+		  da.addBook(book1);
 		  HashMap<String, Book> bhash = da.getBook();
 		  for (String bId : bhash.keySet()) {
 		   System.out.println("Book ID: " + bId);

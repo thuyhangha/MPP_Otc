@@ -54,7 +54,7 @@ public class MainScreenController {
 	@FXML
 	void goOverdueBook(ActionEvent event) throws IOException{
 		rightPlitBorderPanel.getChildren().clear();
-		AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.BOOKVIEW));
+		AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.OVERDUEBOOK));
         rightPlitBorderPanel.setCenter(pane);
 	}
 	
@@ -80,9 +80,12 @@ public class MainScreenController {
 	}
 	
 	@FXML
-	void goPrintCheckoutRecord(ActionEvent event){
-		
+	void goPrintCheckoutRecord(ActionEvent event) throws IOException{
+		rightPlitBorderPanel.getChildren().clear();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.PRINTCHECKOUTRECORD));
+        rightPlitBorderPanel.setCenter(pane);
 	}
+	
 
 	/*Stage stage = (Stage) hlViewLibraryMember.getScene().getWindow();
 	rightPlitBorderPanel = new BorderPane();

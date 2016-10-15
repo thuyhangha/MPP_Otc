@@ -39,11 +39,6 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </Hyperlink>
-                        <Hyperlink fx:id="hlOverdueBook" onAction="#goOverdueBook" text="Over due book" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets left="30.0" />
-                           </GridPane.margin>
-                        </Hyperlink>
                         <Hyperlink fx:id="hlCheckoutBook" onAction="#goCheckoutBook" text="Checkout book" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="30.0" />
@@ -60,6 +55,11 @@
                            </GridPane.margin>
                         </Hyperlink>
                         <Hyperlink fx:id="hlPrintCheckoutRecord" onAction="#goPrintCheckoutRecord" text="Print checkout record" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="30.0" />
+                           </GridPane.margin>
+                        </Hyperlink>
+                        <Hyperlink fx:id="hlOverdueBook" onAction="#goOverdueBook" text="Over due book" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets left="30.0" />
                            </GridPane.margin>

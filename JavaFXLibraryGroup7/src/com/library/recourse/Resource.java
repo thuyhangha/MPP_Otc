@@ -32,6 +32,8 @@ public final class Resource implements Serializable {
 	public static final String NEWBOOKCOPYVIEW = "../view/NewBookCopyView.fxml";
 	public static final String NEWBOOKVIEW = "../view/NewBookView1.fxml";
 	public static final String BOOKVIEW = "../view/BooksView.fxml";
+	public static final String PRINTCHECKOUTRECORD = "../view/PrintCheckoutRecord.fxml";
+	public static final String OVERDUEBOOK = "../view/OverDueBooks.fxml";
 	
 	public static final String DATA = "../../../com/library/view/resource/storage";
 	public static final String CSS = "/application/application.css";
