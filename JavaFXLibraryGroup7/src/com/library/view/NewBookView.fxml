@@ -26,8 +26,8 @@
     <TextField fx:id="txtBorrowDuration" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <HBox alignment="BASELINE_RIGHT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button onAction="#goActionCancel" text="Cancel" />
         <Button onAction="#goActionAddNewBook" text="Add" />
+        <Button onAction="#goActionCancel" text="Cancel" />
     </HBox>
     <stylesheets>
         <URL value="@application.css" />
