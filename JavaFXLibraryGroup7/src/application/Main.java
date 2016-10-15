@@ -33,7 +33,7 @@ public class Main extends Application {
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			generateDummyData(); 
+		//	generateDummyData(); 
 			/*TestData test = new TestData();
 			SerializeAll seALL = new SerializeAll();
 			seALL.deSerializeData();*/
@@ -66,9 +66,9 @@ public class Main extends Application {
 		  List<Author> lstAuthor = Arrays.asList(author);
 		  Book book1 = new Book("123", "MPP 1", 1000, lstAuthor);
 		  BookCopy bookCopy1 = new BookCopy(book1, 1, true);
-		  da.addBookCopy(bookCopy1);
+		//  da.addBookCopy("123", bookCopy1);
 		  BookCopy bookCopy2 = new BookCopy(book1, 2, true);
-		  da.addBookCopy(bookCopy2);
+		  //da.addBookCopy("123", bookCopy2);
 		  BookCopy bookCopy3 = new BookCopy(book1, 3, true);
 		  List<BookCopy> listBookCopy = Arrays.asList(bookCopy1, bookCopy2, bookCopy3);
 		  book1.setBookCopy(listBookCopy);

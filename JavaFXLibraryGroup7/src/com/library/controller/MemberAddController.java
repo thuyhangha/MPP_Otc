@@ -11,6 +11,7 @@ import com.library.entity.LibraryMember;
 import com.library.entity.Person;
 import com.library.model.DataAccess;
 import com.library.recourse.Resource;
+import com.library.utility.Utility;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -131,7 +132,7 @@ public class MemberAddController implements Initializable {
 				Address address = new Address(street, city, state, zip);
 
 				String memberId = txtMemberId.getText();
-				String personId = SystemController.getRandom();
+				String personId = Utility.getRandom();
 				String firstName = txtFirstName.getText();
 				String lastName = txtLastName.getText();
 				String phoneNumber = txtPhone.getText();
@@ -161,7 +162,7 @@ public class MemberAddController implements Initializable {
 	public void goToMainScreen(){
 		try{
 			Stage stage = (Stage) btnCancel.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource(Resource.ADDTOMAINSCREEN));
+			Parent root = FXMLLoader.load(getClass().getResource(Resource.SCREENTOMAINSCREEN));
 			Scene scene = new Scene(root, 1150, 800);
 			stage.setScene(scene);
 			stage.show();
@@ -205,10 +206,6 @@ public class MemberAddController implements Initializable {
 		l.setText(message);
 		l.setTextFill(color);
 		l.setVisible(true); 
-	}
-	
-	public void removeAllStyle(Node n){
-		n.getStyleClass().removeAll("bad","med","good","best"); 
 	}
 	
 	public void showDialog(String title, String headerText, String contentText) {

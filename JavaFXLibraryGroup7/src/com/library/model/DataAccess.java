@@ -24,7 +24,7 @@ public interface DataAccess {
 
 	public HashMap<String, Book> getBook();
 	
-	public void addBookCopy(BookCopy bookCopy);
+	public void addBookCopy(String ISBN, BookCopy bookCopy);
 
 	public HashMap<String, BookCopy> getBookCopy();
 	
