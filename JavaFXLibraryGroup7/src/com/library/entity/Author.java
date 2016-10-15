@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.library.controller.SystemController;
+import com.library.utility.Utility;
 
 public class Author extends Person implements Serializable{
 	private String authorId;
@@ -11,7 +12,7 @@ public class Author extends Person implements Serializable{
 	List<Book> book;
 	public Author(String ID, String firstName, String lastName, String phone, Address address, String credentials) {
 		super(ID, firstName, lastName, phone, address);
-		this.authorId = SystemController.getRandom();
+		this.authorId = Utility.getRandom();
 		this.credentials = credentials;
 	}
 
