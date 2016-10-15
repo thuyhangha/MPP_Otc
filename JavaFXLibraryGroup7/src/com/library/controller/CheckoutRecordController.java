@@ -14,6 +14,7 @@ import com.library.entity.CheckoutRecord;
 import com.library.entity.CheckoutRecordEntry;
 import com.library.entity.LibraryMember;
 import com.library.model.DataAccess;
+import com.library.utility.Utility;
 import com.sun.prism.impl.Disposer.Record;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -91,9 +92,9 @@ public class CheckoutRecordController implements Initializable{
     	}
  
     	if(!bookCopyFound){
-    		showAlerMessage("Information Dialog", "Checkout Error", "This book is not available!!", AlertType.ERROR);
+    		Utility.showAlerMessage("Information Dialog", "Checkout Error", "This book is not available!!", AlertType.ERROR);
     	}else if (!libraryMemberFound) {
-    		showAlerMessage("Information Dialog", "Checkout Error", "Please input correct member Id!", AlertType.ERROR);	
+    		Utility.showAlerMessage("Information Dialog", "Checkout Error", "Please input correct member Id!", AlertType.ERROR);	
 		}else if(bookCopyFound && libraryMemberFound){
 			// Update checked out book and related information
 			dataAccess.setBookCopyAsNotAvailable(isbn, bookCopy.getCopyNum());
@@ -120,15 +121,8 @@ public class CheckoutRecordController implements Initializable{
 			         return new SimpleStringProperty(titleString);
 			     }
 			});
-        	showAlerMessage("Information Dialog", "Checkout Success", " Book Checkout successful !", AlertType.INFORMATION);
+        	Utility.showAlerMessage("Information Dialog", "Checkout Success", " Book Checkout successful !", AlertType.INFORMATION);
     	}
     }
     
-    private void showAlerMessage(String title, String header, String message, AlertType alertType) {
-    	Alert alert = new Alert(alertType);
-    	alert.setTitle(title);
-    	alert.setHeaderText(header);
-    	alert.setContentText(message);
-    	alert.showAndWait();
-    }
 }

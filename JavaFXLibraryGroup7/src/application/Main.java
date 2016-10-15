@@ -33,7 +33,7 @@ public class Main extends Application {
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-//			generateDummyData(); 
+			generateDummyData(); 
 			/*TestData test = new TestData();
 			SerializeAll seALL = new SerializeAll();
 			seALL.deSerializeData();*/

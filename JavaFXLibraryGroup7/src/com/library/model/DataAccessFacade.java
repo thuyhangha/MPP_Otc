@@ -27,7 +27,7 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
-			+ "/src/dataaccess/storage";
+			+ "\\src\\dataaccess\\storage";
 
 	@Override
 	public void addNewPerson(Person person) {
@@ -71,6 +71,24 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	public HashMap<String, Book> readBookMap() {
 		return (HashMap<String, Book>) readFromStorage(StorageType.BOOKS);
 	}
+	
+	public Book searchBook(String isbn) {
+		HashMap<String,Book> booksMap =  readBookMap();
+		Book b = booksMap.get(isbn);
+		return b;
+	}
+	
+	//Book copy
+	
+	/*public int searchCopyNumber(String isbn, int copyNumber) {
+		HashMap<String,Book> booksMap =  readBookMap();
+		Book b = booksMap.get(isbn);
+	
+		for(BookCopy bc: b.getListOfBookCopy()){			
+			copyNumber = bc.getCopyNum();
+		}
+		return copyNumber;
+	}*/
 	
 	public void addBookCopy(BookCopy bookCopy){
 		HashMap<String, BookCopy> bookCopyMap = readBookCopyMap();

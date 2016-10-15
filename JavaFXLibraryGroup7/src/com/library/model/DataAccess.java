@@ -35,5 +35,7 @@ public interface DataAccess {
 	public BookCopy getAvailableBookCopy(String isbn);
 	
 	public void setBookCopyAsNotAvailable(String isbn, int copyNumber);
+	
+	public Book searchBook(String isbn);
 
 }
