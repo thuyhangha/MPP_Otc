@@ -31,7 +31,7 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
-			+ "\\src\\dataaccess\\storage";
+			+ "\\src\\dataaccess\\storage\\";
 
 	@Override
 	public void addNewPerson(Person person) {
@@ -245,10 +245,10 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		ObjectOutputStream out = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
-			if(Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
-				File newFile = new File(path.toString());
-				newFile.createNewFile();
-			}
+//			if(Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
+//				File newFile = new File(path.toString());
+//				newFile.createNewFile();
+//			}
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(ob);
 		} catch(IOException e) {
@@ -267,9 +267,9 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		Object retVal = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
-			if(Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
-				return null;
-			}
+//			if(Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
+//				return null;
+//			}
 			in = new ObjectInputStream(Files.newInputStream(path));
 			retVal = in.readObject();
 		} catch(Exception e) {

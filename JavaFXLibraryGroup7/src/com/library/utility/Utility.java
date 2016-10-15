@@ -126,7 +126,7 @@ public class Utility {
 		try{
 			Stage stage = (Stage) btn.getScene().getWindow();
 			Parent root = FXMLLoader.load(myClass.getResource(Resource.SCREENTOMAINSCREEN));
-			Scene scene = new Scene(root, 1150, 800);
+			Scene scene = new Scene(root, 900, 700);
 			stage.setScene(scene);
 			stage.show();
 		}catch (Exception e) {

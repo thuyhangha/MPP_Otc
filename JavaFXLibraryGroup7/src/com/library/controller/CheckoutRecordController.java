@@ -68,7 +68,7 @@ public class CheckoutRecordController implements Initializable{
 	
     @FXML
     void addCheckoutRecord(ActionEvent event) {
-    	
+    	memberCheckoutRecords.clear();
     	String id = txtMemberID.getText();
     	String isbn = txtISBN.getText();
  
@@ -107,9 +107,7 @@ public class CheckoutRecordController implements Initializable{
         	CheckoutRecordEntry entry = new CheckoutRecordEntry(bookCopy, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
         	entries.add(entry);
         	libraryMember.setCheckoutRecord(checkoutRecord);
-        	dataAccess.addLibraryMember(libraryMember);
-        	
-        	checkoutEntryTable.getItems().clear();
+        	dataAccess.addLibraryMember(libraryMember);    	
         	memberCheckoutRecords.addAll(entries);
         	isbnColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
 			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {

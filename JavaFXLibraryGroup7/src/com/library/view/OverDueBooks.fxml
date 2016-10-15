@@ -19,7 +19,7 @@
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0" hgap="10" vgap="10">
             <Label text="ISBN" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <TextField fx:id="txtISBN" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Button defaultButton="true" onAction="#getOverDueBook" text="Get Over Due Bok" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <Button defaultButton="true" onAction="#getOverDueBook" text="Get Over Due Book" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
         </GridPane>
 
 

@@ -66,7 +66,8 @@ public class PrintCheckoutRecordController implements Initializable{
 	}
 	
     @FXML
-    void printCheckoutRecord(ActionEvent event) {   	
+    void printCheckoutRecord(ActionEvent event) {   
+    	memberCheckoutRecords.clear();
     	String id = txtMemberID.getText();
     	boolean libraryMemberFound = false;
     	
@@ -87,7 +88,7 @@ public class PrintCheckoutRecordController implements Initializable{
         	}
         	
         	List<CheckoutRecordEntry> entries = checkoutRecord.getRecordEntries();
-        	checkoutEntryTable.getItems().clear();
+        	
         	memberCheckoutRecords.addAll(entries);
         	isbnColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
 			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {

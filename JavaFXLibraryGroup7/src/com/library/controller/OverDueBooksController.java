@@ -11,6 +11,7 @@ import com.library.entity.CheckoutRecord;
 import com.library.entity.CheckoutRecordEntry;
 import com.library.entity.LibraryMember;
 import com.library.model.DataAccess;
+import com.library.utility.Utility;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -46,20 +47,21 @@ public class OverDueBooksController implements Initializable{
 	private TableColumn<CheckoutRecordEntry, String> titleColumn;
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL location, ResourceBundle resources) {		
 		memberCheckoutRecords = FXCollections.observableArrayList();
 		checkoutEntryTable.setItems(memberCheckoutRecords);
 	}
 	
     @FXML
     void getOverDueBook(ActionEvent event) {   	
+    	memberCheckoutRecords.clear();
     	String isbn = txtISBN.getText();
     	HashMap<String, Book> bookMap = dataAccess.getBook();
     	Book book = bookMap.get(isbn);
     	boolean bookFound = book != null? true : false;
  
     	if (!bookFound) {
-    		showAlerMessage("Information Dialog", "Print Checkout Error", "Please input correct member Id!", AlertType.ERROR);	
+    		Utility.showAlerMessage("Information Dialog", "Print Checkout Error", "Please input correct ISBN!", AlertType.ERROR);	
 		}else {
 			// Update checked out book and related information
 			List<CheckoutRecordEntry> allOverDueEntries = new ArrayList<CheckoutRecordEntry>();
@@ -74,6 +76,7 @@ public class OverDueBooksController implements Initializable{
 					}
 				}
 			}
+			
 			memberCheckoutRecords.addAll(allOverDueEntries);
         	isbnColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
 			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {

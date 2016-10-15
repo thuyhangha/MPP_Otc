@@ -50,7 +50,7 @@ public class CheckoutRecord implements Serializable{
 	public List<CheckoutRecordEntry> getOverDueRecordEntry() {
 		List<CheckoutRecordEntry> overDueList = new ArrayList<CheckoutRecordEntry>();
 		for (CheckoutRecordEntry recordEntry : this.checkoutRecordEntry) {
-			if (recordEntry.isOverDue()) {
+			if (recordEntry.isOverDue() && recordEntry.getBookCopy().isAvailable() == false) {
 				overDueList.add(recordEntry);
 			}
 		}
