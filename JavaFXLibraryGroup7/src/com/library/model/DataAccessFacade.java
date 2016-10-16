@@ -1,11 +1,13 @@
 package com.library.model;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
@@ -42,8 +44,6 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		saveToStorage(StorageType.PERSONS, personMap);
 	}
 	
-	@Override
-	@SuppressWarnings("unchecked")
 	public HashMap<String, Person> getPersons() {
 		return readPersonsMap();
 	}
@@ -245,6 +245,10 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		ObjectOutputStream out = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
+			if(Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
+				File newFile = new File(path.toString());
+				newFile.createNewFile();
+			}
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(ob);
 		} catch(IOException e) {
@@ -263,6 +267,9 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		Object retVal = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
+			if(Files.notExists(path, LinkOption.NOFOLLOW_LINKS)) {
+				return null;
+			}
 			in = new ObjectInputStream(Files.newInputStream(path));
 			retVal = in.readObject();
 		} catch(Exception e) {
