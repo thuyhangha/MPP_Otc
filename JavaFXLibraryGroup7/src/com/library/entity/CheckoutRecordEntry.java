@@ -2,9 +2,12 @@ package com.library.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class CheckoutRecordEntry implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5624953082890467014L;
 	private String ID;
 	private LocalDate checkoutDate;
 	private BookCopy bookCopy;
