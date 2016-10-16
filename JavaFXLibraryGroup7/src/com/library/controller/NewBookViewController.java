@@ -94,6 +94,7 @@ public class NewBookViewController implements Initializable{
 			else {
 				Book newbook  = new Book(isbn, title, borrowDuration);		
 				dataAccess.addBook(newbook);
+				
 				Utility.showAlerMessage("Information Dialog", "Success", "Book is added successful!", AlertType.INFORMATION);
 				
 				Utility.goToMainScreen(btnAdd, getClass());

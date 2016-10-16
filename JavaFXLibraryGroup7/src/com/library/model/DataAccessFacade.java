@@ -80,15 +80,17 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	
 	//Book copy
 	
-	/*public int searchCopyNumber(String isbn, int copyNumber) {
-		HashMap<String,Book> booksMap =  readBookMap();
-		Book b = booksMap.get(isbn);
-	
-		for(BookCopy bc: b.getListOfBookCopy()){			
-			copyNumber = bc.getCopyNum();
+	public BookCopy searchCopyNumberByISBN(String ISBN, BookCopy bookCopy) {
+		HashMap<String, Book> bookMap = getBook();	
+		List<BookCopy> lstBookCopy = bookMap.get(ISBN).getListOfBookCopy();
+
+		for (BookCopy bookCopyItem : lstBookCopy) {
+			if(bookCopyItem.getCopyNum() == bookCopy.getCopyNum()){
+				return bookCopy;
+			}
 		}
-		return copyNumber;
-	}*/
+		return null;
+	}
 	
 	public void addBookCopy(String ISBN, BookCopy bookCopy){
 		/*HashMap<String, BookCopy> bookCopyMap = readBookCopyMap();
@@ -100,9 +102,11 @@ public class DataAccessFacade implements DataAccess, Serializable {
 		
 		bookCopyMap.put(isbn + copyNumber, bookCopy);
 		saveToStorage(StorageType.BOOKCOPIES, bookCopyMap);*/
-		HashMap<String, Book> bookMap = getBook();		
+		HashMap<String, Book> bookMap = getBook();	
+	
 		bookMap.get(ISBN).addBookCopy(bookCopy);
 		saveToStorage(StorageType.BOOKS, bookMap);
+
 	}
 
 	public HashMap<String, BookCopy> getBookCopy() {

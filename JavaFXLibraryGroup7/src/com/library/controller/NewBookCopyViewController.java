@@ -48,11 +48,18 @@ public class NewBookCopyViewController implements Initializable{
 			if(book == null) 
 				Utility.showAlerMessage("Information Dialog", "Add New Book Copy Error", "ISBN does not exist. Please input correct ISBN!", AlertType.ERROR);
 			else {			
-				BookCopy newBookCopy  = new BookCopy(book, copyNumber);
+				BookCopy newBookCopy  = new BookCopy(book, copyNumber, true);
 				//book.addBookCopy(newBookCopy);
-				dataAccess.addBookCopy(isbn, newBookCopy);
-				Utility.showAlerMessage("Information Dialog", "Success", "Book Copy is added successful!", AlertType.INFORMATION);
-				Utility.goToMainScreen(btnAdd, getClass());
+				BookCopy bc = dataAccess.searchCopyNumberByISBN(isbn, newBookCopy);
+				if(bc == null){
+					dataAccess.addBookCopy(isbn, newBookCopy);
+				
+					Utility.showAlerMessage("Information Dialog", "Success", "Book Copy is added successful!", AlertType.INFORMATION);
+					Utility.goToMainScreen(btnAdd, getClass());
+				}else {
+					Utility.showAlerMessage("Information Dialog", "Add New Book Copy Error", "Book Copy Number existed!", AlertType.ERROR);
+				}
+				
 			}
 			
 		}

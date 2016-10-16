@@ -87,6 +87,7 @@ public class PrintCheckoutRecordController implements Initializable{
         	}
         	
         	List<CheckoutRecordEntry> entries = checkoutRecord.getRecordEntries();
+        	checkoutEntryTable.getItems().clear();
         	memberCheckoutRecords.addAll(entries);
         	isbnColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
 			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {
