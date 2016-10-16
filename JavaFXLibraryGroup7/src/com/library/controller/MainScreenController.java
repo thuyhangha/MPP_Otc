@@ -13,9 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class MainScreenController implements Initializable{
 
@@ -41,11 +44,16 @@ public class MainScreenController implements Initializable{
 	Hyperlink hlPrintCheckoutRecord;
 	
 	@FXML
+	Hyperlink hlLogout;
+	
+	@FXML
 	BorderPane rightPlitBorderPanel;
+	
+	User loggedUser = LoggedUser.getInstance().getUser();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		User loggedUser = LoggedUser.getInstance().getUser();
+		
 		String authen = loggedUser.getAuthorization().name();
 		if(authen.equals(Auth.ADMIN.toString())){
 			hlAddABook.setDisable(false);
@@ -80,12 +88,20 @@ public class MainScreenController implements Initializable{
 		}
 	}
 	
+	
+	@FXML
+	void goActionLogout(ActionEvent event) throws IOException{
+		LoggedUser.getInstance().setUser(null);
+		
+		Stage stage = (Stage) hlLogout.getScene().getWindow();
+		Parent root = FXMLLoader.load(getClass().getResource(Resource.SCREENTOLOGIN));
+		Scene scene = new Scene(root, 500, 500);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	@FXML
 	void goViewLibraryMember(ActionEvent event) throws IOException{
-		gotoLibraryMemberMethod();
-	}
-
-	private void gotoLibraryMemberMethod() throws IOException {
 		rightPlitBorderPanel.getChildren().clear();
 		AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEW));
         rightPlitBorderPanel.setCenter(pane);

@@ -8,6 +8,7 @@ public final class Resource implements Serializable {
 	public static final String MEMBERVIEW = "../view/MembersView.fxml";
 	public static final String MEMBERADD = "../view/MemberAdd.fxml";
 	public static final String SCREENTOMAINSCREEN = "../view/MainScreen.fxml";
+	public static final String SCREENTOLOGIN = "../view/Login.fxml";
 	public static final String CHECKOUTBOOKFORM = "../view/CheckoutBookForm.fxml";
 	
 	public static final String NEWBOOKCOPYVIEW = "../view/NewBookCopyView.fxml";
