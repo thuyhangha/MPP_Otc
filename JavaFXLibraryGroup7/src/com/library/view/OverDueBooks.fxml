@@ -17,15 +17,9 @@
             <Insets top="10" right="10" bottom="10" left="10"/>
         </padding>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0" hgap="10" vgap="10">
-            <Label text="Member ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtMemberID" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Button defaultButton="true" onAction="#printCheckoutRecord" text="Print Checkout" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-
-            <Label text="Member Name" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <Label text="Address" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-
-            <Text fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
-            <Text fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+            <Label text="ISBN" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtISBN" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Button defaultButton="true" onAction="#getOverDueBook" text="Get Over Due Bok" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
         </GridPane>
 
 

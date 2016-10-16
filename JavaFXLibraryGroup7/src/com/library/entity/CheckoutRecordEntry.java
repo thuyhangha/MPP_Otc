@@ -2,6 +2,7 @@ package com.library.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class CheckoutRecordEntry implements Serializable{
 	private String ID;
@@ -47,4 +48,10 @@ public class CheckoutRecordEntry implements Serializable{
 		this.dueDate = dueDate;
 	}
 	
+	public boolean isOverDue() {
+		if (this.dueDate.isBefore(LocalDate.now())) {
+			return true;
+		}
+		return false;
+	}
 }

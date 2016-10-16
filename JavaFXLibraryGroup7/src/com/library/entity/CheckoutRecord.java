@@ -46,5 +46,14 @@ public class CheckoutRecord implements Serializable{
 	public List<CheckoutRecordEntry> getRecordEntries() {
 		return checkoutRecordEntry;
 	}
-
+	
+	public List<CheckoutRecordEntry> getOverDueRecordEntry() {
+		List<CheckoutRecordEntry> overDueList = new ArrayList<CheckoutRecordEntry>();
+		for (CheckoutRecordEntry recordEntry : this.checkoutRecordEntry) {
+			if (recordEntry.isOverDue()) {
+				overDueList.add(recordEntry);
+			}
+		}
+		return overDueList;
+	}
 }
