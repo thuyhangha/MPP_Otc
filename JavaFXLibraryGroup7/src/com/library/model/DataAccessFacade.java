@@ -10,11 +10,13 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 
+import com.library.entity.Auth;
 import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.entity.BookCopy;
 import com.library.entity.LibraryMember;
 import com.library.entity.Person;
+import com.library.entity.User;
 
 public class DataAccessFacade implements DataAccess, Serializable {
 	/**
@@ -198,6 +200,46 @@ public class DataAccessFacade implements DataAccess, Serializable {
 	private HashMap<String, Author> readAuthorMap() {
 		return (HashMap<String, Author>) readFromStorage(StorageType.AUTHORS);
 	}
+	
+	////////User
+	@Override
+	public HashMap<String, User> getUsers(){
+		return readUserMap();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, User> readUserMap() {
+		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
+	}
+	
+	@Override
+	public void addUsersMap(List<User> userList) {
+		HashMap<String, User> map = new HashMap<String, User>();
+		userList.forEach(user -> map.put(user.getId(), user));
+		saveToStorage(StorageType.USERS, map);
+	}
+	
+	@Override
+	public Auth login(String id, String pwd) {
+		HashMap<String, User> userMap = readUserMap();
+		if(!userMap.containsKey(id)) return null;
+		User user = userMap.get(id);
+		if(!pwd.equals(user.getPassword())) {
+			return null;
+		}
+		return user.getAuthorization();
+	}
+	
+	/*public void addUser(User user){
+		HashMap<String, User> userMap = readUserMap();
+		if (userMap == null) {
+			userMap = new HashMap<String, User>();
+		}
+		
+		userMap.put(user.getId(), user);
+		saveToStorage(StorageType.USERS, user);
+	}*/
+	////////End User
 	
 	static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;

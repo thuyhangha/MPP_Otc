@@ -3,7 +3,7 @@ package com.library.recourse;
 import java.io.Serializable;
 
 public final class Resource implements Serializable {	
-	public static final String MAINSCREEN = "../com/library/view/MainScreen.fxml";
+	public static final String LOGIN = "../com/library/view/Login.fxml";
 	
 	public static final String MEMBERVIEW = "../view/MembersView.fxml";
 	public static final String MEMBERADD = "../view/MemberAdd.fxml";

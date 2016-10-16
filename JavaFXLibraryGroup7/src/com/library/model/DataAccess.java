@@ -1,12 +1,15 @@
 package com.library.model;
 
 import java.util.HashMap;
+import java.util.List;
 
+import com.library.entity.Auth;
 import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.entity.BookCopy;
 import com.library.entity.LibraryMember;
 import com.library.entity.Person;
+import com.library.entity.User;
 
 public interface DataAccess {
 	
@@ -39,4 +42,10 @@ public interface DataAccess {
 	public Book searchBook(String isbn);
 
 	public BookCopy searchCopyNumberByISBN(String ISBN, BookCopy bookCopy);
+	
+	public Auth login(String id, String pwd);
+
+	public HashMap<String, User> getUsers();
+
+	void addUsersMap(List<User> userList);
 }

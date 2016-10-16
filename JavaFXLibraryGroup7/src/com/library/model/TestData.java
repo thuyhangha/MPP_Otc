@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.library.entity.Address;
+import com.library.entity.Auth;
 import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.entity.BookCopy;
 import com.library.entity.LibraryMember;
+import com.library.entity.User;
 
 public class TestData {
 	
@@ -87,6 +89,16 @@ public class TestData {
 		allBooks.get(2).addBookCopy(allBookCopy.get(5));
 		allBooks.get(3).addBookCopy(allBookCopy.get(6));
 	}
+	
+	public final List<User> allUsers = new ArrayList<User>() {
+		{
+			add(new User("101", "xyz", Auth.LIBRARIAN));
+			add(new User("102", "abc", Auth.ADMIN));
+			add(new User("103", "111", Auth.BOTH));
+		}
+	};
+	
+	
 	public void addDummyData() {
 		addBookCopyForBook();
 		DataAccess dataAccess = new DataAccessFacade();
@@ -96,5 +108,6 @@ public class TestData {
 		for (Book book : allBooks) {
 			dataAccess.addBook(book);
 		}
+		dataAccess.addUsersMap(allUsers);
 	}
 }

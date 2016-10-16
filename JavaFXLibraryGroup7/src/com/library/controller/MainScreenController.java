@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.library.entity.Auth;
+import com.library.entity.LoggedUser;
+import com.library.entity.User;
 import com.library.recourse.Resource;
 
 import javafx.event.ActionEvent;
@@ -42,10 +45,14 @@ public class MainScreenController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		try {
-			gotoLibraryMemberMethod();
-		} catch (IOException e) {
-			e.printStackTrace();
+		User loggedUser = LoggedUser.getInstance().getUser();
+		String authen = loggedUser.getAuthorization().name();
+		if(authen.equals(Auth.ADMIN)){
+			hlAddABook.setDisable(true);;
+		}else if(authen.equals(Auth.LIBRARIAN)){
+			
+		}else if(authen.equals(Auth.BOTH)){
+			
 		}
 	}
 	
