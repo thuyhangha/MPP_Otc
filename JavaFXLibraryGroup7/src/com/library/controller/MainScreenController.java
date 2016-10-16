@@ -47,7 +47,7 @@ public class MainScreenController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		User loggedUser = LoggedUser.getInstance().getUser();
 		String authen = loggedUser.getAuthorization().name();
-		if(authen.equals(Auth.ADMIN)){
+		if(authen.equals(Auth.ADMIN.toString())){
 			hlAddABook.setDisable(false);
 			hlViewLibraryMember.setDisable(false);
 			hlAddLibraryMember.setDisable(false);
@@ -57,7 +57,7 @@ public class MainScreenController implements Initializable{
 			hlCheckoutBook.setDisable(true);
 			hlPrintCheckoutRecord.setDisable(true);
 			hlOverdueBook.setDisable(true);
-		}else if(authen.equals(Auth.LIBRARIAN)){
+		}else if(authen.equals(Auth.LIBRARIAN.toString())){
 			hlAddABook.setDisable(true);
 			hlViewLibraryMember.setDisable(true);
 			hlAddLibraryMember.setDisable(true);
@@ -67,7 +67,7 @@ public class MainScreenController implements Initializable{
 			hlCheckoutBook.setDisable(false);
 			hlPrintCheckoutRecord.setDisable(false);
 			hlOverdueBook.setDisable(false);
-		}else if(authen.equals(Auth.BOTH)){
+		}else if(authen.equals(Auth.BOTH.toString())){
 			hlAddABook.setDisable(false);
 			hlViewLibraryMember.setDisable(false);
 			hlAddLibraryMember.setDisable(false);
