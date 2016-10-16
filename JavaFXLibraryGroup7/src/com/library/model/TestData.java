@@ -91,9 +91,9 @@ public class TestData {
 	
 	public final List<User> allUsers = new ArrayList<User>() {
 		{
-			add(new User("101", "xyz", Auth.LIBRARIAN));
-			add(new User("102", "abc", Auth.ADMIN));
-			add(new User("103", "111", Auth.BOTH));
+			add(new User("111", "abc", Auth.LIBRARIAN));
+			add(new User("222", "abc", Auth.ADMIN));
+			add(new User("333", "abc", Auth.BOTH));
 		}
 	};
 	
