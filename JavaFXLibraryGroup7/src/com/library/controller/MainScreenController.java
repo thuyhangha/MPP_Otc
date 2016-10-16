@@ -48,11 +48,35 @@ public class MainScreenController implements Initializable{
 		User loggedUser = LoggedUser.getInstance().getUser();
 		String authen = loggedUser.getAuthorization().name();
 		if(authen.equals(Auth.ADMIN)){
-			hlAddABook.setDisable(true);;
+			hlAddABook.setDisable(false);
+			hlViewLibraryMember.setDisable(false);
+			hlAddLibraryMember.setDisable(false);
+			hlAddACopyExsitingBook.setDisable(false);
+			hlAddABook.setDisable(false);
+			
+			hlCheckoutBook.setDisable(true);
+			hlPrintCheckoutRecord.setDisable(true);
+			hlOverdueBook.setDisable(true);
 		}else if(authen.equals(Auth.LIBRARIAN)){
+			hlAddABook.setDisable(true);
+			hlViewLibraryMember.setDisable(true);
+			hlAddLibraryMember.setDisable(true);
+			hlAddACopyExsitingBook.setDisable(true);
+			hlAddABook.setDisable(true);
 			
+			hlCheckoutBook.setDisable(false);
+			hlPrintCheckoutRecord.setDisable(false);
+			hlOverdueBook.setDisable(false);
 		}else if(authen.equals(Auth.BOTH)){
+			hlAddABook.setDisable(false);
+			hlViewLibraryMember.setDisable(false);
+			hlAddLibraryMember.setDisable(false);
+			hlAddACopyExsitingBook.setDisable(false);
+			hlAddABook.setDisable(false);
 			
+			hlCheckoutBook.setDisable(false);
+			hlPrintCheckoutRecord.setDisable(false);
+			hlOverdueBook.setDisable(false);
 		}
 	}
 	

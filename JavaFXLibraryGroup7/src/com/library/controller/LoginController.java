@@ -1,0 +1,56 @@
+package com.library.controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import com.library.entity.LoggedUser;
+import com.library.entity.User;
+import com.library.model.DataAccess;
+import com.library.utility.Utility;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+public class LoginController implements Initializable{
+	@FXML
+	TextField txtUserName;
+	
+	@FXML
+	TextField txtPassword;
+	
+	@FXML
+	Button btnLogin;
+	
+	@FXML
+	Label lblUserNameError;
+	
+	@FXML
+	Label lblPasswordError;
+	
+	@FXML
+	public void goActionlogin(ActionEvent event){
+		if(Utility.isEmpty(lblUserNameError.getText().trim()) && Utility.isEmpty(lblPasswordError.getText().trim())){
+			String username = txtUserName.getText().trim();
+			String password = txtPassword.getText().trim();
+			DataAccess dataAccess  = SystemController.getDataAccessInstance();
+			if(dataAccess.getUsers().get(username).getPassword().equals(password)){
+				LoggedUser.getInstance().setUser(new User(username, password, dataAccess.getUsers().get(username).getAuthorization()));
+				Utility.goToMainScreen(btnLogin, getClass());
+			}else {
+				Utility.showAlerMessage("Information Dialog", "Login Error", "UserName or Password is incorect!", AlertType.ERROR);
+			}
+		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		Utility.checkEmptyTextField(txtUserName, lblUserNameError);
+		Utility.checkEmptyTextField(txtPassword, lblPasswordError);
+	}
+}
