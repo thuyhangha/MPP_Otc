@@ -38,4 +38,5 @@ public interface DataAccess {
 	
 	public Book searchBook(String isbn);
 
+	public BookCopy searchCopyNumberByISBN(String ISBN, BookCopy bookCopy);
 }

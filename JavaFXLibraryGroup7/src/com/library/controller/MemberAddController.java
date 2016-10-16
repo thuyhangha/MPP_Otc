@@ -106,7 +106,13 @@ public class MemberAddController implements Initializable {
 	
 	@FXML
 	void goActionCancel(ActionEvent event) throws IOException {
-		
+		txtFirstName.setText("");
+		txtCity.setText("");
+		txtLastName.setText("");
+		txtMemberID.setText("");
+		txtPhone.setText("");
+		txtStreet.setText("");
+		txtZip.setText("");
 	}
 	
 	@FXML

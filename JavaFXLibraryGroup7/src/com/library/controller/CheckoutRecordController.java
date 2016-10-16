@@ -104,10 +104,12 @@ public class CheckoutRecordController implements Initializable{
         	}
         	
         	List<CheckoutRecordEntry> entries = checkoutRecord.getRecordEntries();
-        	CheckoutRecordEntry entry = new CheckoutRecordEntry(bookCopy, LocalDate.now(), LocalDate.now().plusDays(21));
+        	CheckoutRecordEntry entry = new CheckoutRecordEntry(bookCopy, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
         	entries.add(entry);
         	libraryMember.setCheckoutRecord(checkoutRecord);
         	dataAccess.addLibraryMember(libraryMember);
+        	
+        	checkoutEntryTable.getItems().clear();
         	memberCheckoutRecords.addAll(entries);
         	isbnColumn.setCellValueFactory(new Callback<CellDataFeatures<CheckoutRecordEntry, String>, ObservableValue<String>>() {
 			     public ObservableValue<String> call(CellDataFeatures<CheckoutRecordEntry, String> p) {
