@@ -50,7 +50,7 @@ public class TestData {
 			add(member);
 			member = new LibraryMember("3", "Jenny", "Ha", "6411112347", addresses.get(7), "1003");
 			add(member);
-			member = new LibraryMember("3", "Sarah", "Pugh", "6411112348", addresses.get(1), "1004");
+			member = new LibraryMember("4", "Sarah", "Pugh", "6411112348", addresses.get(1), "1004");
 			add(member);
 		}
 	};
@@ -59,10 +59,10 @@ public class TestData {
 	public final List<Book> allBooks = new ArrayList<Book>() {
 		{
 //			public Book(String iSBN, String title, int maxCheckoutLength, List<Author> lstAuthor)
-			add(new Book("11-12345", "The Big Fish", 21, allAuthors.get(0)));
-			add(new Book("12-23456", "Antartica", 7, allAuthors.get(2)));
-			add(new Book("13-34567", "Thinking Java", 21, allAuthors.get(3)));
-			add(new Book("14-45678", "Jimmy's First Day of School", 7, allAuthors.get(4)));
+			add(new Book("101", "The Big Fish", 21, allAuthors.get(0)));
+			add(new Book("102", "Antartica", 7, allAuthors.get(2)));
+			add(new Book("103", "Thinking Java", 21, allAuthors.get(3)));
+			add(new Book("104", "Jimmy's First Day of School", 7, allAuthors.get(4)));
 		}
 	};
 	
@@ -71,10 +71,16 @@ public class TestData {
 		{
 			add(new BookCopy(allBooks.get(0), 1));
 			add(new BookCopy(allBooks.get(0), 2));
+			add(new BookCopy(allBooks.get(0), 3));
+			add(new BookCopy(allBooks.get(0), 4));
 			add(new BookCopy(allBooks.get(1), 1));
 			add(new BookCopy(allBooks.get(1), 2));
 			add(new BookCopy(allBooks.get(1), 3));
+			add(new BookCopy(allBooks.get(1), 4));
 			add(new BookCopy(allBooks.get(2), 1));
+			add(new BookCopy(allBooks.get(2), 2));
+			add(new BookCopy(allBooks.get(2), 3));
+			add(new BookCopy(allBooks.get(2), 4));
 			add(new BookCopy(allBooks.get(3), 1));
 		}
 	};
@@ -82,11 +88,17 @@ public class TestData {
 	private void addBookCopyForBook() {
 		allBooks.get(0).addBookCopy(allBookCopy.get(0));
 		allBooks.get(0).addBookCopy(allBookCopy.get(1));
-		allBooks.get(1).addBookCopy(allBookCopy.get(2));
-		allBooks.get(1).addBookCopy(allBookCopy.get(3));
+		allBooks.get(0).addBookCopy(allBookCopy.get(2));
+		allBooks.get(0).addBookCopy(allBookCopy.get(3));
 		allBooks.get(1).addBookCopy(allBookCopy.get(4));
-		allBooks.get(2).addBookCopy(allBookCopy.get(5));
-		allBooks.get(3).addBookCopy(allBookCopy.get(6));
+		allBooks.get(1).addBookCopy(allBookCopy.get(5));
+		allBooks.get(1).addBookCopy(allBookCopy.get(6));
+		allBooks.get(1).addBookCopy(allBookCopy.get(7));
+		allBooks.get(2).addBookCopy(allBookCopy.get(8));
+		allBooks.get(2).addBookCopy(allBookCopy.get(9));
+		allBooks.get(2).addBookCopy(allBookCopy.get(10));
+		allBooks.get(2).addBookCopy(allBookCopy.get(11));
+		allBooks.get(3).addBookCopy(allBookCopy.get(12));
 	}
 	
 	public final List<User> allUsers = new ArrayList<User>() {

@@ -38,11 +38,15 @@ public class LoginController implements Initializable{
 			String username = txtUserName.getText().trim();
 			String password = txtPassword.getText().trim();
 			DataAccess dataAccess  = SystemController.getDataAccessInstance();
-			if(dataAccess.getUsers().get(username).getPassword().equals(password)){
+			User userValue= dataAccess.getUsers().get(username);
+			
+			if(null == userValue){
+				Utility.showAlerMessage("Information Dialog", "Login Error", "UserName does not exist. Please input password again.", AlertType.ERROR);
+			}else if(userValue.getPassword().equals(password)){
 				LoggedUser.getInstance().setUser(new User(username, password, dataAccess.getUsers().get(username).getAuthorization()));
 				Utility.goToMainScreen(btnLogin, getClass());
 			}else {
-				Utility.showAlerMessage("Information Dialog", "Login Error", "UserName or Password is incorect!", AlertType.ERROR);
+				Utility.showAlerMessage("Information Dialog", "Login Error", "Password does not exist. Please input password again!", AlertType.ERROR);
 			}
 		}
 	}

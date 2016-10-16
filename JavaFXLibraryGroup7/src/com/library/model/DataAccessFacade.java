@@ -1,5 +1,6 @@
 package com.library.model;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -251,7 +252,8 @@ public class DataAccessFacade implements DataAccess, Serializable {
 			}
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(ob);
-		} catch(IOException e) {
+		} catch(EOFException eof){}
+		catch(IOException e) {
 			e.printStackTrace();
 		} finally {
 			if(out != null) {
@@ -272,7 +274,8 @@ public class DataAccessFacade implements DataAccess, Serializable {
 			}
 			in = new ObjectInputStream(Files.newInputStream(path));
 			retVal = in.readObject();
-		} catch(Exception e) {
+		} catch(EOFException eof){}
+		catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(in != null) {
