@@ -1,17 +1,20 @@
 package com.library.controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.library.recourse.Resource;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-public class MainScreenController {
+public class MainScreenController implements Initializable{
 
 	@FXML
 	Hyperlink hlViewLibraryMember;
@@ -37,8 +40,21 @@ public class MainScreenController {
 	@FXML
 	BorderPane rightPlitBorderPanel;
 	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			gotoLibraryMemberMethod();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@FXML
 	void goViewLibraryMember(ActionEvent event) throws IOException{
+		gotoLibraryMemberMethod();
+	}
+
+	private void gotoLibraryMemberMethod() throws IOException {
 		rightPlitBorderPanel.getChildren().clear();
 		AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEW));
         rightPlitBorderPanel.setCenter(pane);
@@ -85,21 +101,4 @@ public class MainScreenController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource(Resource.PRINTCHECKOUTRECORD));
         rightPlitBorderPanel.setCenter(pane);
 	}
-	
-
-	/*Stage stage = (Stage) hlViewLibraryMember.getScene().getWindow();
-	rightPlitBorderPanel = new BorderPane();
-	rightPlitBorderPanel.getChildren().clear();
-
-	AnchorPane root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEWTOMEMBER));
-	
-	rightPlitBorderPanel.setCenter(root);
-	
-	//Scene scene = new Scene(rightPlitBorderPanel);
-	stage.getScene().setRoot(rightPlitBorderPanel);
-	stage.show();*/
-	
-	/*AnchorPane root = FXMLLoader.load(getClass().getResource(Resource.MEMBERVIEWTOMEMBER));
-	rightPlitBorderPanel.getChildren().clear();
-	rightPlitBorderPanel.getChildren().setAll(root);*/
 }

@@ -108,6 +108,6 @@ public class NewBookViewController implements Initializable{
 		Utility.checkEmptyTextField(txtTitle, lblTitleError);
 		
 		Utility.checkNumberTextField(txtBorrowDuration, lblBorrowDurationError);
-		Utility.checkNumberTextField(txtPhoneOfAuthor, lblPhoneOfAuthorError);
+		Utility.checkEmptyTextField(txtPhoneOfAuthor, lblPhoneOfAuthorError);
 	}
 }

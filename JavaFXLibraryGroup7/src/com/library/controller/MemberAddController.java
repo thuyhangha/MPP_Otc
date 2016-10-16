@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -97,7 +96,7 @@ public class MemberAddController implements Initializable {
 		Utility.checkEmptyTextField(txtFirstName, lblFirstNameError);
 		Utility.checkEmptyTextField(txtLastName, lblLastNameError);
 		Utility.checkEmptyTextField(txtCity, lblCityError);
-		Utility.checkNumberTextField(txtPhone, lblPhoneError);
+		Utility.checkEmptyTextField(txtPhone, lblPhoneError);
 		Utility.checkEmptyTextField(txtStreet, lblStreetError);
 		
 		Utility.checkEmptyTextField(txtMemberID, lblMemberIDError);
@@ -113,6 +112,7 @@ public class MemberAddController implements Initializable {
 		txtPhone.setText("");
 		txtStreet.setText("");
 		txtZip.setText("");
+		Utility.goToMainScreen(btnAddMember, getClass());
 	}
 	
 	@FXML
