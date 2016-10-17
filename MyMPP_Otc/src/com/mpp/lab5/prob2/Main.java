@@ -1,4 +1,4 @@
-package lesson5duckassignment;
+package com.mpp.lab5.prob2;
 public class Main {
 
 	public static void main(String[] args) {

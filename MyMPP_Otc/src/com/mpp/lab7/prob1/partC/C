@@ -1,0 +1,7 @@
+The error happens because the code used HashMap to check for duplicated.
+
+When it passed employee object to HashMap, it will call the hashCode() method which was not override. It leads to the
+default hashCode() in Object class is called. And 2 identical employee has 2 different hash code regardless they had
+the same "name" and "salary"
+
+Solution: override hashCode() method

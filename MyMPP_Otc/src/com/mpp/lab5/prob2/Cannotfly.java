@@ -1,4 +1,4 @@
-package lesson5duckassignment;
+package com.mpp.lab5.prob2;
 
 public class Cannotfly implements FlyBehavior {
 

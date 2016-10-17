@@ -1,0 +1,4 @@
+Java’s ArrayList implements 6 interfaces and extends one class. What are they?
+
+implement 6 interfaces: Serializable, Cloneable, Iterable<E>, Collection<E>, List<E>, RandomAccess
+extend: AbstractList<E>

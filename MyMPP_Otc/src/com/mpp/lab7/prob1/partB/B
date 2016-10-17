@@ -1,0 +1,14 @@
+Explain, in each case, what is  wrong with the solution. 
+ Place each of your answers in a text file in the relevant package.
+ 
+The problem with this solution is :-
+When listsAreEqual() method check the equality of the two lists, 
+it calls the method contains() implemented in ArrayList class.
+The contains() method then calls indexOf() method. 
+And the indexOf() method calls java.lang.Object equals() method 
+which only checks both objects reference the same thing.
+
+The class Employee has an overloading method 'equals()'.
+So, the solution is to override java.lang.Object 'equals()' method 
+to check the two instances have the same name and salary. 
+And we should also override hashCode() method since equal objects has equal hashCode.

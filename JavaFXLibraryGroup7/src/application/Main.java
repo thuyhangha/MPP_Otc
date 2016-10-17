@@ -14,8 +14,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			TestData testData = new TestData();
-			testData.addDummyData();
+			/*TestData testData = new TestData();
+			testData.addDummyData();*/
 			Parent root = FXMLLoader.load(getClass().getResource(Resource.LOGIN));
 			Scene scene = new Scene(root, 500, 500);
 			primaryStage.setTitle("Library project group 7");

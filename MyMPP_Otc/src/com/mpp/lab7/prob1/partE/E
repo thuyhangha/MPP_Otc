@@ -1,0 +1,10 @@
+Diamond problem
+
+i. When the type D is a class 
+
+D should override the method D. 
+If B and C implement the method, D override the method basing access the method interfaceName.super.methodName(). 
+If B and C do not implement the method, D override method by itself.  
+
+ii. When the type D is an interface
+D should have a class default method or declare the method without implement. the implementer of D will implement it
