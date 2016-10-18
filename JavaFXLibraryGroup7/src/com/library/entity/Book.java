@@ -20,22 +20,25 @@ public class Book implements Serializable{
 		ISBN = iSBN;
 		this.title = title;
 		this.maxCheckoutLength = maxCheckoutLength;
+		lstAuthor = new ArrayList<Author>();
 		lstBookCopy = new ArrayList<BookCopy>();
 	}
 	
-	public Book(String iSBN, String title, int maxCheckoutLength, List<Author> lstAuthor) {
+	public Book(String iSBN, String title, int maxCheckoutLength, Author author) {
 		ISBN = iSBN;
 		this.title = title;
 		this.maxCheckoutLength = maxCheckoutLength;
-		this.lstAuthor = lstAuthor;
+		lstAuthor = new ArrayList<Author>();
+		lstAuthor.add(author);
 		lstBookCopy = new ArrayList<BookCopy>();
 	}
-	public Book(String iSBN, String title, int maxCheckoutLength, List<Author> lstAuthor,
+	public Book(String iSBN, String title, int maxCheckoutLength, Author author,
 			List<BookCopy> lstBookCopy) {
 		ISBN = iSBN;
 		this.title = title;
 		this.maxCheckoutLength = maxCheckoutLength;
-		this.lstAuthor = lstAuthor;
+		lstAuthor = new ArrayList<Author>();
+		lstAuthor.add(author);
 		this.lstBookCopy = lstBookCopy;
 	}
 
@@ -56,7 +59,7 @@ public class Book implements Serializable{
 	}
 
 	public List<Author> getListOfAuthors() {
-		return lstAuthor;
+		return getLstAuthor();
 	}
 	
 	public void addBookCopy( BookCopy bc){
@@ -65,5 +68,9 @@ public class Book implements Serializable{
 
 	public void setBookCopy(List<BookCopy> listBookCopy) {
 		lstBookCopy = listBookCopy;
+	}
+
+	public List<Author> getLstAuthor() {
+		return lstAuthor;
 	}
 }

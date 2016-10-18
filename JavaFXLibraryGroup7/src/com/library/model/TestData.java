@@ -32,11 +32,11 @@ public class TestData {
 	public final List<Author> allAuthors = new ArrayList<Author>() {
 		{
 			
-			add(new Author("111", "Joe", "Thomas", "641123450", addresses.get(1), "A happy man is he."));
-			add(new Author("112", "Sandra", "Thomas", "641123451", addresses.get(2), "A happy wife is she."));
-			add(new Author("113", "Nirmal", "Pugh", "641123452", addresses.get(3), "Thinker of thoughts."));
-			add(new Author("114", "Andrew", "Cleveland", "641123453", addresses.get(4), "Author of childrens' books."));
-			add(new Author("115", "Sarah", "Connor", "641123456", addresses.get(5), "Known for her clever style."));
+			add(new Author("111", "Joe", "Thomas", "641123450", addresses.get(1), "A happy man is he.", ""));
+			add(new Author("112", "Sandra", "Thomas", "641123451", addresses.get(2), "A happy wife is she.", ""));
+			add(new Author("113", "Nirmal", "Pugh", "641123452", addresses.get(3), "Thinker of thoughts.", ""));
+			add(new Author("114", "Andrew", "Cleveland", "641123453", addresses.get(4), "Author of childrens' books.", ""));
+			add(new Author("115", "Sarah", "Connor", "641123456", addresses.get(5), "Known for her clever style.", ""));
 		}
 	};
 	
@@ -46,11 +46,11 @@ public class TestData {
 		{
 			LibraryMember member = new LibraryMember("1", "Thuy Hang", "Ha", "6411112345", addresses.get(4), "1001");
 			add(member);
-			member = new LibraryMember("2", "Hang", "Ha", "6411112346", addresses.get(5), "1002");
+			member = new LibraryMember("2", "Hang", "Ha", "6411112346", addresses.get(6), "1002");
 			add(member);
-			member = new LibraryMember("3", "Jenny", "Ha", "6411112347", addresses.get(6), "1003");
+			member = new LibraryMember("3", "Jenny", "Ha", "6411112347", addresses.get(7), "1003");
 			add(member);
-			member = new LibraryMember("3", "Sarah", "Pugh", "6411112348", addresses.get(6), "1004");
+			member = new LibraryMember("3", "Sarah", "Pugh", "6411112348", addresses.get(1), "1004");
 			add(member);
 		}
 	};
@@ -59,11 +59,10 @@ public class TestData {
 	public final List<Book> allBooks = new ArrayList<Book>() {
 		{
 //			public Book(String iSBN, String title, int maxCheckoutLength, List<Author> lstAuthor)
-			add(new Book("11-12345", "The Big Fish", 21, Arrays.asList(allAuthors.get(0), allAuthors.get(1))));
-			add(new Book("12-23456", "Antartica", 7, Arrays.asList(allAuthors.get(2))));
-			add(new Book("13-34567", "Thinking Java", 21, Arrays.asList(allAuthors.get(3))));
-			add(new Book("14-45678", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));
-			
+			add(new Book("11-12345", "The Big Fish", 21, allAuthors.get(0)));
+			add(new Book("12-23456", "Antartica", 7, allAuthors.get(2)));
+			add(new Book("13-34567", "Thinking Java", 21, allAuthors.get(3)));
+			add(new Book("14-45678", "Jimmy's First Day of School", 7, allAuthors.get(4)));
 		}
 	};
 	

@@ -1,9 +1,14 @@
 package com.library.controller;
 
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.library.entity.Address;
+import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.model.DataAccess;
 import com.library.utility.Utility;
@@ -12,9 +17,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class NewBookViewController implements Initializable{
@@ -38,6 +43,9 @@ public class NewBookViewController implements Initializable{
 	
 	@FXML
 	TextField txtPhoneOfAuthor;
+	
+	@FXML
+	TextArea txtAreaShortBio;
 	
 	@FXML
 	Label lblISBNError;
@@ -75,6 +83,11 @@ public class NewBookViewController implements Initializable{
 		txtLastNameOfAuthor.setText("");
 		txtCredentialOfAuthor.setText("");
 		txtPhoneOfAuthor.setText("");
+		txtFirstNameOfAuthor.setText("");
+		txtLastNameOfAuthor.setText("");
+		txtCredentialOfAuthor.setText("");
+		txtPhoneOfAuthor.setText("");
+		txtAreaShortBio.setText("");
 	}
 	
 	@FXML
@@ -84,15 +97,23 @@ public class NewBookViewController implements Initializable{
 		   && Utility.isEmpty(lblPhoneOfAuthorError.getText().trim())){
 			
 			String isbn = txtISBN.getText().trim();
-			String title = txtTitle.getText().trim();
-			Integer borrowDuration = Integer.parseInt(txtBorrowDuration.getText().trim());
-		
 			DataAccess dataAccess  = SystemController.getDataAccessInstance();
 			Book book = dataAccess.searchBook(isbn);
 			if(book != null) 
 				Utility.showAlerMessage("Information Dialog", "Add New Book Error", "This book is not available!", AlertType.ERROR);
 			else {
-				Book newbook  = new Book(isbn, title, borrowDuration);		
+				String title = txtTitle.getText().trim();
+				Integer borrowDuration = Integer.parseInt(txtBorrowDuration.getText().trim());
+				
+				//Author
+				String firstNameOfAuthor = txtFirstNameOfAuthor.getText();
+				String lastNameOfAuthor = txtLastNameOfAuthor.getText();
+				String credentialOfAuthor = txtCredentialOfAuthor.getText();
+				String phoneOfAuthor = txtPhoneOfAuthor.getText();
+				String shortBio = txtAreaShortBio.getText();
+				
+				Author author = new Author(Utility.getRandom(), firstNameOfAuthor, lastNameOfAuthor, phoneOfAuthor, new Address(), credentialOfAuthor, shortBio);
+				Book newbook  = new Book(isbn, title, borrowDuration, author);
 				dataAccess.addBook(newbook);
 				
 				Utility.showAlerMessage("Information Dialog", "Success", "Book is added successful!", AlertType.INFORMATION);
@@ -106,8 +127,7 @@ public class NewBookViewController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		Utility.checkEmptyTextField(txtISBN, lblISBNError);
 		Utility.checkEmptyTextField(txtTitle, lblTitleError);
-		
+	
 		Utility.checkNumberTextField(txtBorrowDuration, lblBorrowDurationError);
-		Utility.checkEmptyTextField(txtPhoneOfAuthor, lblPhoneOfAuthorError);
 	}
 }
