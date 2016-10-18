@@ -105,6 +105,7 @@ public class CheckoutRecordController implements Initializable{
         	
         	List<CheckoutRecordEntry> entries = checkoutRecord.getRecordEntries();
         	CheckoutRecordEntry entry = new CheckoutRecordEntry(bookCopy, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+        	entry.getBookCopy().setAvailability(false);
         	entries.add(entry);
         	libraryMember.setCheckoutRecord(checkoutRecord);
         	dataAccess.addLibraryMember(libraryMember);    	
