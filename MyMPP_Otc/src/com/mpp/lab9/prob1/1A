@@ -1,0 +1,1 @@
+a> The code will be generate infinity 1. We should have limit(num) to prevent the infinity generation.

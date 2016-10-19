@@ -1,0 +1,59 @@
+a. Name two differences between imperative and functional programming
+Imperative programming focuses on how, in the sense that you express the logic of your program based on how the computer would execute it.
+
+Functional programming concentrates on the what, trying to let you specify the logic of your program as close to actual logic 
+as possible rather than basing its semantics on how a computer would execute it.
+
+b. Explain the meaning of declarative programming. Give an example. 
+Is a programming paradigm that expresses the logic of a computation(What do) without describing its control flow(How do).
+Example: Consumer is a declarative programming
+
+c. Explain the difference between functional interface, functor, and closure, and give examples of each using Java 7 syntax
+functional interface is a interface only has one abstract class.
+Example:
+@FunctionalInterface
+public interface Consumer<T> {
+	void apply(T t);
+}
+
+functor is implementation of functional interface
+Example
+public class EmployeeNameComparator implements Comparator<Employee> {
+	@Override
+	public int compare(Employee e1, Employee e2) {
+		return e1.name.compareTo(e2.name);
+	}
+}
+
+closure is a functor embedded inside another class and can full access to their enclosing object's  state.
+example for functor and closure
+public class EmployeeInfo{
+	private final string sortMethod = "BYNAME";
+	public void sort(List<Employee> emps, String method){
+		public class EmployeeNameComparator implements Comparator<Employee> {
+			@Override
+			public int compare(Employee e1, Employee e2) {
+				return e1.name.compareTo(e2.name);
+			}
+		}
+	}
+	Collection.sort(emp, new EmployeeNameComparator);
+}
+
+d. Name three benefits of including functional style programming in Java
+Program are thread-safe
+Easier to demonstrate correctness of functional program
+Easier for testing because there are no side effect
+Program is easier to write and read 
+
+e.	For each lambda expression below, name the parameters and the free variables.
+i.  there are no parameter and variable is s, t
+ii. parameters: s, t and free variable: ignoreCase
+
+
+f. BiFunction<T,U,R> can accept this::equal
+
+g. 
+i> Consumer<String> cons = System.out::println
+ii> I choose the first reference method object::instanceMethod
+
