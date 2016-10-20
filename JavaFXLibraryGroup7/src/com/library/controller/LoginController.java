@@ -43,7 +43,7 @@ public class LoginController implements Initializable{
 			if(null == userValue){
 				Utility.showAlerMessage("Information Dialog", "Login Error", "UserName does not exist. Please input password again.", AlertType.ERROR);
 			}else if(userValue.getPassword().equals(password)){
-				LoggedUser.getInstance().setUser(new User(username, password, dataAccess.getUsers().get(username).getAuthorization()));
+				LoggedUser.getInstance().setUser(userValue);
 				Utility.goToMainScreen(btnLogin, getClass());
 			}else {
 				Utility.showAlerMessage("Information Dialog", "Login Error", "Password does not exist. Please input password again!", AlertType.ERROR);
