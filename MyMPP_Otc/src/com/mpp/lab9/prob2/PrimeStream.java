@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 public class PrimeStream {
 	
 	public void printFirstNPrimes(long nPrimes){
+		//Stream<BigInteger> primes = Stream.iterate(BigInteger.ONE.add(BigInteger.ONE), n -> BigInteger.probablePrime(10, rnd)).limit(nPrimes);
+		
 		Stream<Integer> primes = Stream.iterate(2, n -> nextPrime(n)).limit(nPrimes);
 		primes.forEach(System.out::println);
 	}
@@ -18,7 +20,7 @@ public class PrimeStream {
 	}
 	
 	public boolean isPrime(int num){
-		for (int i = 2; i < Math.sqrt(num); i++) {
+		for (int i = 2; i <= Math.sqrt(num); i++) {
 			if(num%i == 0)
 				return false;
 		}
